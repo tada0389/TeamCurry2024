@@ -33,6 +33,8 @@ namespace Title
         #region private method
         async UniTask StartStaging()
         {
+            Ui.CurtainCtrl.Instance.SetCloseForce();
+
             // wait for language choose input
             //await UniTask.WaitUntil(() => JoyconInput.Instance.GetButtonDown(ButtonCode.Jump));
             await UniTask.WaitUntil(() => Input.GetKeyDown(KeyCode.Space));

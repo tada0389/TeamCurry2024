@@ -24,6 +24,20 @@ namespace Ui
 
             await UniTask.Delay(System.TimeSpan.FromSeconds(durationSec));
         }
+
+        public void SetCloseForce()
+        {
+            {
+                var pos = _leftCurtain.rectTransform.localPosition;
+                pos.x = -480.0f;
+                _leftCurtain.rectTransform.localPosition = pos;
+            }
+            {
+                var pos = _rightCurtain.rectTransform.localPosition;
+                pos.x = 480.0f;
+                _rightCurtain.rectTransform.localPosition = pos;
+            }
+        }
         #endregion
 
         #region private field
