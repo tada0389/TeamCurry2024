@@ -16,7 +16,7 @@ namespace TadaLib.Sample.Sequence.Scene
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void LoadManagerScene()
         {
-            if (!SceneManager.GetActiveScene().name.Contains("Sequence"))
+            if (!UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Contains("Sequence"))
             {
                 // サンプルシーン用のクラスのため、必要なときだけ処理する
                 return;
@@ -28,13 +28,13 @@ namespace TadaLib.Sample.Sequence.Scene
 
         static bool TryRoadScene(string sceneName)
         {
-            if (SceneManager.GetSceneByName(sceneName).IsValid())
+            if (UnityEngine.SceneManagement.SceneManager.GetSceneByName(sceneName).IsValid())
             {
                 // 既に存在する
                 return false;
             }
 
-            SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
             return true;
         }
     }

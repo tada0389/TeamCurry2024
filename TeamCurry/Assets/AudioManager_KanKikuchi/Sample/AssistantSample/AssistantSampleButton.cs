@@ -14,7 +14,7 @@ public class AssistantSampleButton : MonoBehaviour {
   /// シーン移動
   /// </summary>
   public void LoadScene() {
-    SceneManager.LoadScene(SceneManager.GetSceneAt(0).name == "AssistantSample1" ? "AssistantSample2" : "AssistantSample1");
+    UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetSceneAt(0).name == "AssistantSample1" ? "AssistantSample2" : "AssistantSample1");
   }
   
 }

@@ -16,7 +16,7 @@ namespace TadaLib.Sample.Action2d.Scene
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void LoadManagerScene()
         {
-            if (SceneManager.GetActiveScene().name != "SampleAction2d_InGame")
+            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "SampleAction2d_InGame")
             {
                 // サンプルシーン用のクラスのため、必要なときだけ処理する
                 return;
@@ -28,13 +28,13 @@ namespace TadaLib.Sample.Action2d.Scene
 
         static bool TryRoadScene(string sceneName)
         {
-            if (SceneManager.GetSceneByName(sceneName).IsValid())
+            if (UnityEngine.SceneManagement.SceneManager.GetSceneByName(sceneName).IsValid())
             {
                 // 既に存在する
                 return false;
             }
 
-            SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
             return true;
         }
     }

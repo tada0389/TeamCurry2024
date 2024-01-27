@@ -58,7 +58,7 @@ namespace TadaLib.Scene
 
             var unloadScenes = new List<string>()
             {
-                SceneManager.GetActiveScene().name
+                UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
             };
             unloadScenes.AddRange(_reloadTargetScenes);
             await Scenes.UnloadScenesAsync(unloadScenes.ToArray()).ToUniTask();
@@ -70,7 +70,7 @@ namespace TadaLib.Scene
             await Scenes.LoadScenesAsync(loadScenes.ToArray()).ToUniTask();
 
             // nextScene を activeScene にする (メインはこれなので)
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName(nextScene));
+            UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName(nextScene));
 
             await TransitionEffectManager.Instance.FadeOut(fadeOutDurationSec);
 
