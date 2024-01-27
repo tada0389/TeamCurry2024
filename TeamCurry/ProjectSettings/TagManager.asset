@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: GimmickBack
+    uniqueID: 1004971679
+    locked: 0
+  - name: Character
+    uniqueID: 1128839387
+    locked: 0
+  - name: GimmickFront
+    uniqueID: 512919483
+    locked: 0
