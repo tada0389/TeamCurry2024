@@ -51,6 +51,8 @@ namespace InputSystem
 
         void Start()
         {
+            actionEnabled = true;
+
             foreach (ButtonCode button in Enum.GetValues(typeof(ButtonCode)))
             {
                 _buttonCur.Add(button, false);
@@ -138,19 +140,6 @@ namespace InputSystem
             if (Input.GetKey(KeyCode.A))
             {
                 joyconAngle += Time.deltaTime * 180;
-            }
-
-            if (JoyconInput.Instance.GetButtonDown(ButtonCode.UpArrow))
-            {
-                Debug.Log("上が押されました");
-            }
-            if (JoyconInput.Instance.GetButton(ButtonCode.UpArrow))
-            {
-                Debug.Log("上が押されてます");
-            }
-            if (JoyconInput.Instance.GetButtonUp(ButtonCode.UpArrow))
-            {
-                Debug.Log("上が離されました");
             }
         }
 
@@ -241,9 +230,9 @@ namespace InputSystem
                 switch (code)
                 {
                     case AxisCode.Horizontal:
-                        return Input.GetAxis("Horizontal");
+                        return Input.GetAxis("Horizontal1");
                     case AxisCode.Vertical:
-                        return Input.GetAxis("Vertical");
+                        return Input.GetAxis("Vertical1");
                 }
                 return 0;
             };
