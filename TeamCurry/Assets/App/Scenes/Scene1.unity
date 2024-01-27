@@ -145,8 +145,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 887752830390657215, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
       propertyPath: sprites.Array.size
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 887752830390657215, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
+      propertyPath: switchPoseAnimation
+      value: 
+      objectReference: {fileID: 1560638059}
     - target: {fileID: 887752830390657215, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
       propertyPath: playerSpriteRenderer
       value: 
@@ -154,19 +158,39 @@ PrefabInstance:
     - target: {fileID: 887752830390657215, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
       propertyPath: sprites.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: ab3f5c13d1346f34791ef189a47fd571, type: 3}
+      objectReference: {fileID: 21300000, guid: 1d17388f1ebfb0043b5954151db852bd, type: 3}
     - target: {fileID: 887752830390657215, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
       propertyPath: sprites.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: 9fec2d20980158c47b1a3bcd53244b92, type: 3}
+      objectReference: {fileID: 21300000, guid: 2f27d23f6aef0d24b9a60a93dab497ad, type: 3}
     - target: {fileID: 887752830390657215, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
       propertyPath: sprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: c4a3c689f56bba344bbd713fe3301dab, type: 3}
+    - target: {fileID: 887752830390657215, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
+      propertyPath: sprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: c00c001cff6c58342a812ece156cb371, type: 3}
+    - target: {fileID: 887752830390657215, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
+      propertyPath: sprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2aed5b61e21ade14e8725de85721f393, type: 3}
+    - target: {fileID: 887752830390657215, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
+      propertyPath: sprites.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: d5fa5d64aa81fa84fa843d90b9e3f90a, type: 3}
+    - target: {fileID: 887752830390657215, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
+      propertyPath: sprites.Array.data[6]
       value: 
       objectReference: {fileID: 21300000, guid: 21742638fe294e14b920eb748fdfc33e, type: 3}
     - target: {fileID: 887752830390657215, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
       propertyPath: spriteRenderers.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3975874012672021258, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 1207533751}
     - target: {fileID: 4649871045761164221, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
       propertyPath: m_Name
       value: StatueStage
@@ -548,6 +572,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfa8791ba6fa64844bdd0871eeaa4f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1560638059 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3975874012672021258, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
+  m_PrefabInstance: {fileID: 98976666}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe99b1ff5ffe41d58c8841175530719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1580657855

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class StatueStage : Stage
     [SerializeField] private int correctSpriteIndex;
     [SerializeField] private SpriteRenderer playerSpriteRenderer;
     [SerializeField] private GameTimer gameTimer;
+    [SerializeField] private SwitchPoseAnimation switchPoseAnimation;
 
     private int currentSpriteIndex = 0;
 
@@ -39,7 +41,7 @@ public class StatueStage : Stage
                     currentSpriteIndex = 0;
                 }
 
-                playerSpriteRenderer.sprite = sprites[currentSpriteIndex];
+                SwitchSprite();
             }
             else if (Input.GetKeyDown(KeyCode.A))
             {
@@ -49,7 +51,7 @@ public class StatueStage : Stage
                     currentSpriteIndex = sprites.Count - 1;
                 }
 
-                playerSpriteRenderer.sprite = sprites[currentSpriteIndex];
+                SwitchSprite();
             }
 
             return StagePhaseState.Active;
@@ -65,5 +67,11 @@ public class StatueStage : Stage
     public override StagePhaseState Shutdown()
     {
         return StagePhaseState.Done;
+    }
+
+    private void SwitchSprite()
+    {
+        playerSpriteRenderer.sprite = sprites[currentSpriteIndex];
+        switchPoseAnimation.Do();
     }
 }
