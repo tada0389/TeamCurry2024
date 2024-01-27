@@ -30,11 +30,13 @@ namespace TadaLib.ActionStd
         #region MonoBehavior の実装
         void Start()
         {
+#if UNITY_EDITOR
             TadaLib.Dbg.DebugBoxManager.Display(this).SetSize(new Vector2(500.0f, 400.0f));
             if (_isUseDebugText)
             {
                 TadaLib.Dbg.DebugTextManager.Display(() => CreateDebugStr(), 0);
             }
+#endif
         }
         #endregion
 
