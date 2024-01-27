@@ -38,6 +38,10 @@ namespace Actor.Gimmick
 
             var acceleration = -gravity / _length * (float)Mathf.Sin(_angle);
 
+            var joyconOrientation = InputSystem.JoyconInput.Instance.GetJoyconVector();
+            var addVel = Mathf.Clamp(-(joyconOrientation.y - 90.0f) / 45.0f, -1.0f, 1.0f) * _joyconPower;
+            acceleration += addVel * Time.deltaTime;
+
             _angularVelocity += acceleration * Time.deltaTime;
             _angle += _angularVelocity * Time.deltaTime;
 
@@ -52,6 +56,8 @@ namespace Actor.Gimmick
         float _initialAngularVelocity = 0.0f;
         [SerializeField]
         float _length;
+        [SerializeField]
+        float _joyconPower = 0.1f;
 
         float _angle;
         float _angularVelocity;
