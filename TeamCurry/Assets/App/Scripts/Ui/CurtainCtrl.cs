@@ -6,7 +6,7 @@ using DG.Tweening;
 
 namespace Ui
 {
-    public class CurtainCtrl : MonoBehaviour
+    public class CurtainCtrl : TadaLib.Util.SingletonMonoBehaviour<CurtainCtrl>
     {
         #region method
         public async UniTask OpenStaging(float durationSec)

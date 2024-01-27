@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TadaLib/Scenes/TadaLibDebug.unity
     guid: 0ae0b893f22115645b231be6f99cc1d3
+  - enabled: 1
+    path: Assets/App/Scenes/GlobalManager.unity
+    guid: 2a5688e15b889294f808c0e8deb700ec
   m_configObjects: {}

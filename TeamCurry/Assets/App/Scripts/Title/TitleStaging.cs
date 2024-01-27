@@ -17,8 +17,6 @@ namespace Title
 
         #region private field
         [SerializeField]
-        Ui.CurtainCtrl _curtain;
-        [SerializeField]
         UnityEngine.CanvasGroup _languageCanvas;
         [SerializeField]
         UnityEngine.CanvasGroup _titleMenuCanvas;
@@ -44,7 +42,7 @@ namespace Title
             await UniTask.WaitForSeconds(_fadeOutLanguageCanvasDurationSec);
 
             // Open curtain
-            _curtain.OpenStaging(_curtainOpenDurationSec).Forget();
+            Ui.CurtainCtrl.Instance.OpenStaging(_curtainOpenDurationSec).Forget();
 
             await UniTask.WaitForSeconds(_curtainOpenDurationSec * 0.2f);
 
@@ -62,7 +60,7 @@ namespace Title
             //await UniTask.WaitUntil(() => JoyconInput.Instance.GetButtonDown(ButtonCode.Jump));
 
             // Close curtain
-            await _curtain.CloseStaging(_curtainCloseDurationSec);
+            await Ui.CurtainCtrl.Instance.CloseStaging(_curtainCloseDurationSec);
         }
         #endregion
     }
