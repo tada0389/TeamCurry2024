@@ -1,0 +1,50 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Assertions;
+using TadaLib.ProcSystem;
+using TadaLib.Extension;
+using TadaLib.ActionStd;
+using TadaLib.Input;
+using UniRx;
+
+namespace #DIRECTORYNAME#
+{
+    /// <summary>
+    /// #SCRIPTNAME#処理
+    /// </summary>
+    [System.Serializable]
+    public class #SCRIPTNAME# : StateMachine.StateBase
+    {
+        #region static関数
+        public static void ChangeState(GameObject obj)
+        {
+            var state = obj.GetComponent<StateMachine>().GetStateInstance<#SCRIPTNAME#>();
+            state.ChangeState(typeof(#SCRIPTNAME#));
+        }
+        #endregion
+
+        #region プロパティ
+        #endregion
+
+        #region StateMachine.StateBase の実装
+        public override void OnStart()
+        {
+        }
+
+        public override void OnEnd()
+        {
+        }
+
+        public override void OnUpdate()
+        {
+        }
+        #endregion
+
+        #region privateフィールド
+        #endregion
+
+        #region privateメソッド
+        #endregion
+    }
+}
