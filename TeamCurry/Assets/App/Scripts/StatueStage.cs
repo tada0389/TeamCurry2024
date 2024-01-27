@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class StatueStage : Stage
 {
-    public List<SpriteRenderer> spriteRenderers;
-    public SpriteRenderer correctSprite;
-    [SerializeField] private SpriteRenderer playerSprite;
+    public List<Sprite> sprites;
+    [SerializeField] private int correctSpriteIndex;
+    [SerializeField] private SpriteRenderer playerSpriteRenderer;
 
     private int currentSpriteIndex = 0;
 
@@ -25,19 +25,19 @@ public class StatueStage : Stage
         if (Input.GetKeyDown(KeyCode.D))
         {
             currentSpriteIndex++;
-            if (currentSpriteIndex >= spriteRenderers.Count)
+            if (currentSpriteIndex >= sprites.Count)
             {
                 currentSpriteIndex = 0;
             }
 
-            playerSprite = spriteRenderers[currentSpriteIndex];
+            playerSpriteRenderer.sprite = sprites[currentSpriteIndex];
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
             currentSpriteIndex--;
             if (currentSpriteIndex <= 0)
             {
-                currentSpriteIndex = spriteRenderers.Count + 1;
+                currentSpriteIndex = sprites.Count + 1;
             }
         }
 
@@ -46,7 +46,7 @@ public class StatueStage : Stage
 
     public override (StagePhaseState, StageOutcome) End()
     {
-        StageOutcome stageOutcome = playerSprite == correctSprite ? StageOutcome.Win : StageOutcome.Lose;
+        StageOutcome stageOutcome = playerSpriteRenderer.sprite == sprites[correctSpriteIndex] ? StageOutcome.Win : StageOutcome.Lose;
         return (StagePhaseState.Done, stageOutcome);
     }
 
