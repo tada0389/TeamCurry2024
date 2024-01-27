@@ -8,8 +8,14 @@ public class ChandelierStage : Stage
     
     [SerializeField] private GameTimer timer;
 
+    private void Awake()
+    {
+        this.gameObject.SetActive(false);
+    }
+
     public override StagePhaseState Setup()
     {
+        this.gameObject.SetActive(true);
         chandelierMovement = Vector3.zero;
         playerAttached = false;
         outcome = StageOutcome.Lose;
@@ -40,6 +46,7 @@ public class ChandelierStage : Stage
 
     public override StagePhaseState Shutdown()
     {
+        this.gameObject.SetActive(false);
         return StagePhaseState.Done;
     }
 }

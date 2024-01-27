@@ -8,7 +8,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] private List<Stage> stages;
     private int currentStageIndex = -1;
 
-    private Stage CurrentStage => stages[currentStageIndex];
+    public Stage CurrentStage => stages[currentStageIndex];
 
     public bool LoadNextStage()
     {
@@ -28,12 +28,12 @@ public class StageManager : MonoBehaviour
         CurrentStage.StagePhase = StagePhase.Setup;
     }
 
-    public (StagePhaseState, StageOutcome) UpdateStage()
+    public StagePhaseState UpdateStage()
     {
         switch (CurrentStage.StagePhase)
         {
             case StagePhase.Unloaded:
-                return (StagePhaseState.Done, CurrentStage.StageOutcome);
+                return StagePhaseState.Done;
             case StagePhase.Setup:
                 StagePhaseState setupState = CurrentStage.Setup();
                 if (setupState == StagePhaseState.Done)
@@ -73,7 +73,7 @@ public class StageManager : MonoBehaviour
                 break;
         }
 
-        return (StagePhaseState.Active, CurrentStage.StageOutcome);
+        return StagePhaseState.Active;
     }
 }
 

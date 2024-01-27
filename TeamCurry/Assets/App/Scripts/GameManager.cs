@@ -71,20 +71,19 @@ public class GameManager : MonoBehaviour
 
     private void UpdateStage()
     {
-        var stageNextStep = stageManager.UpdateStage();
-        if (stageNextStep.Item1 == StagePhaseState.Done)
+        var stagePhaseState = stageManager.UpdateStage();
+        if (stagePhaseState == StagePhaseState.Done)
         {
-            switch (stageNextStep.Item2)
+            switch (this.stageManager.CurrentStage.StageOutcome)
             {
                 case StageOutcome.Undefined:
-                    throw new System.InvalidOperationException();
+                    Debug.LogError("o no");
+                    break;
                 case StageOutcome.Win:
                     this.gameState = GameState.Load;
                     break;
                 case StageOutcome.Lose:
                     this.gameState = GameState.Reload;
-                    break;
-                default:
                     break;
             }
         }
