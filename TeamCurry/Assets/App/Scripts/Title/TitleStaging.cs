@@ -30,6 +30,8 @@ namespace Title
         float _curtainCloseDurationSec = 0.5f;
         #endregion
 
+        public bool MenuComplete = false;
+
         #region private method
         async UniTask StartStaging()
         {
@@ -63,6 +65,8 @@ namespace Title
 
             // Close curtain
             await Ui.CurtainCtrl.Instance.CloseStaging(_curtainCloseDurationSec);
+
+            MenuComplete = true;
         }
         #endregion
     }

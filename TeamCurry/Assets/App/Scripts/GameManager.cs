@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private StageManager stageManager;
     [SerializeField] private GameState gameState;
+    [SerializeField] private Title.TitleStaging titleStaging;
 
     private void Start()
     {
@@ -44,8 +45,9 @@ public class GameManager : MonoBehaviour
 
     private void Menu()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (titleStaging.MenuComplete)
         {
+            titleStaging.gameObject.SetActive(false);
             gameState = GameState.Load;
         }
     }
