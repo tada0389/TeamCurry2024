@@ -45,19 +45,17 @@ namespace TadaLib.Util
         protected bool CheckInstance()
         {
             // 新しく来たほうを優先する
-            instance = this as T;
-            return true;
-            //if (instance == null)
-            //{
-            //    instance = this as T;
-            //    return true;
-            //}
-            //else if (Instance == this)
-            //{
-            //    return true;
-            //}
-            //Destroy(this);
-            //return false;
+            if (instance == null)
+            {
+                instance = this as T;
+                return true;
+            }
+            else if (Instance == this)
+            {
+                return true;
+            }
+            Destroy(this);
+            return false;
         }
     }
 }
