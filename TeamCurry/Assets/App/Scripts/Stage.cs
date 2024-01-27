@@ -5,6 +5,8 @@ public abstract class Stage : MonoBehaviour
 {
     public StagePhase stagePhase = StagePhase.Unloaded;
 
+    [SerializeField] protected float timeLimit;
+
     public abstract StagePhaseState Setup();
 
     public abstract StagePhaseState StartStage();
