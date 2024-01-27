@@ -23,6 +23,11 @@ public class StageManager : MonoBehaviour
         return true;
     }
 
+    public void ReloadStage()
+    {
+        CurrentStage.stagePhase = StagePhase.Setup;
+    }
+
     public bool UpdateStage()
     {
         switch (CurrentStage.stagePhase)
@@ -87,4 +92,10 @@ public enum StagePhaseState
 {
     Active,
     Done
+}
+
+public enum StageOutcome
+{
+    Win,
+    Lose
 }

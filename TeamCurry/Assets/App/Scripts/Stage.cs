@@ -11,7 +11,7 @@ public abstract class Stage : MonoBehaviour
 
     public abstract StagePhaseState Play();
 
-    public abstract StagePhaseState End();
+    public abstract (StagePhaseState, StageOutcome) End();
 
     public abstract StagePhaseState Shutdown();
 }
