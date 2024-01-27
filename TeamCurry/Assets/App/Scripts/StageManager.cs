@@ -34,7 +34,6 @@ public class StageManager : MonoBehaviour
         {
             case StagePhase.Unloaded:
                 return true;
-                break;
             case StagePhase.Setup:
                 StagePhaseState setupState = CurrentStage.Setup();
                 if (setupState == StagePhaseState.Done)
@@ -57,7 +56,7 @@ public class StageManager : MonoBehaviour
                 }
                 break;
             case StagePhase.End:
-                StagePhaseState endState = CurrentStage.End();
+                (StagePhaseState endState, StageOutcome stageOutcome) = CurrentStage.End();
                 if (endState == StagePhaseState.Done)
                 {
                     CurrentStage.stagePhase = StagePhase.Shutdown;
