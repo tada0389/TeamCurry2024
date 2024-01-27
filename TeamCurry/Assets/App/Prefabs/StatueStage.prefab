@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5599674642603174663}
   - component: {fileID: 887752830390657215}
+  - component: {fileID: 3975874012672021258}
   m_Layer: 0
   m_Name: StatueStage
   m_TagString: Untagged
@@ -44,7 +45,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa8791ba6fa64844bdd0871eeaa4f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stagePhase: 0
-  spriteRenderers: []
-  correctSprite: {fileID: 0}
-  playerSprite: {fileID: 0}
+  StagePhase: 0
+  StageOutcome: 0
+  timeLimit: 0
+  sprites: []
+  correctSpriteIndex: 0
+  playerSpriteRenderer: {fileID: 0}
+  gameTimer: {fileID: 0}
+  switchPoseAnimation: {fileID: 0}
+--- !u!114 &3975874012672021258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4649871045761164221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe99b1ff5ffe41d58c8841175530719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  targetScale: 1.2
+  animationDuration: 0.1

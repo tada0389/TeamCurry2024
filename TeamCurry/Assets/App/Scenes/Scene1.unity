@@ -187,6 +187,10 @@ PrefabInstance:
       propertyPath: spriteRenderers.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3975874012672021258, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 1207533751}
     - target: {fileID: 4649871045761164221, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
       propertyPath: m_Name
       value: StatueStage
@@ -234,10 +238,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4649871045761164221, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1560638059}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
 --- !u!1 &793255542
 GameObject:
@@ -557,11 +558,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageManager: {fileID: 793255543}
   gameState: 0
---- !u!1 &1560638056 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4649871045761164221, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
-  m_PrefabInstance: {fileID: 98976666}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1560638057 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5599674642603174663, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
@@ -572,27 +568,23 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 887752830390657215, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
   m_PrefabInstance: {fileID: 98976666}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1560638056}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfa8791ba6fa64844bdd0871eeaa4f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1560638059
+--- !u!114 &1560638059 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3975874012672021258, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
+  m_PrefabInstance: {fileID: 98976666}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1560638056}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fe99b1ff5ffe41d58c8841175530719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 1207533751}
-  targetScale: 1.2
-  animationDuration: 0.1
 --- !u!1 &1580657855
 GameObject:
   m_ObjectHideFlags: 0
