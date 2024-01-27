@@ -1,15 +1,19 @@
 using UnityEngine;
 
-public class Chandelier : Stage
+public class ChandelierStage : Stage
 {
-    private Vector3 chandelierMovement = Vector3.zero;
-    private bool playerAttached = false;
+    private Vector3 chandelierMovement;
+    private bool playerAttached;
+    private StageOutcome outcome;
     
     [SerializeField] private GameTimer timer;
 
     public override StagePhaseState Setup()
     {
-        timer.SetTimer(this.timeLimit);
+        chandelierMovement = Vector3.zero;
+        playerAttached = false;
+        outcome = StageOutcome.Lose;
+        timer.SetTimer(timeLimit);
         return StagePhaseState.Done;
     }
 
@@ -20,13 +24,18 @@ public class Chandelier : Stage
 
     public override StagePhaseState Play()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            outcome = StageOutcome.Win;
+        }
+
         return timer.TimerDone() ? StagePhaseState.Done : StagePhaseState.Active;
     }
 
-    public override StagePhaseState End()
+    public override (StagePhaseState, StageOutcome) End()
     {
         timer.PauseTimer();
-        return StagePhaseState.Done;
+        return (StagePhaseState.Done, outcome);
     }
 
     public override StagePhaseState Shutdown()
