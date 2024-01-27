@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     {
         Menu,
         Load,
+        Reload,
         Stage,
         EndScreen
     }
@@ -28,6 +29,9 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Load:
                 Load();
+                break;
+            case GameState.Reload:
+                Reload();
                 break;
             case GameState.Stage:
                 UpdateStage();
@@ -59,12 +63,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Reload()
+    {
+        stageManager.ReloadStage();
+        gameState = GameState.Stage;
+    }
+
     private void UpdateStage()
     {
-        bool stageEnded = stageManager.UpdateStage();
-        if (stageEnded)
+        var stageNextStep = stageManager.UpdateStage();
+        if (stageNextStep.Item1 == StagePhaseState.Done)
         {
-            this.gameState = GameState.Load;
+            switch (stageNextStep.Item2)
+            {
+                case StageOutcome.Undefined:
+                    throw new System.InvalidOperationException();
+                case StageOutcome.Win:
+                    this.gameState = GameState.Load;
+                    break;
+                case StageOutcome.Lose:
+                    this.gameState = GameState.Reload;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

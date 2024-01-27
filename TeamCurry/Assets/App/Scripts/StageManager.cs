@@ -19,61 +19,61 @@ public class StageManager : MonoBehaviour
             return false;
         }
 
-        CurrentStage.stagePhase = StagePhase.Setup;
+        CurrentStage.StagePhase = StagePhase.Setup;
         return true;
     }
 
     public void ReloadStage()
     {
-        CurrentStage.stagePhase = StagePhase.Setup;
+        CurrentStage.StagePhase = StagePhase.Setup;
     }
 
-    public bool UpdateStage()
+    public (StagePhaseState, StageOutcome) UpdateStage()
     {
-        switch (CurrentStage.stagePhase)
+        switch (CurrentStage.StagePhase)
         {
             case StagePhase.Unloaded:
-                return true;
+                return (StagePhaseState.Done, CurrentStage.StageOutcome);
             case StagePhase.Setup:
                 StagePhaseState setupState = CurrentStage.Setup();
                 if (setupState == StagePhaseState.Done)
                 {
-                    CurrentStage.stagePhase = StagePhase.Start;
+                    CurrentStage.StagePhase = StagePhase.Start;
                 }
                 break;
             case StagePhase.Start:
                 StagePhaseState startState = CurrentStage.StartStage();
                 if (startState == StagePhaseState.Done)
                 {
-                    CurrentStage.stagePhase = StagePhase.Playing;
+                    CurrentStage.StagePhase = StagePhase.Playing;
                 }
                 break;
             case StagePhase.Playing:
                 StagePhaseState playState = CurrentStage.Play();
                 if (playState == StagePhaseState.Done)
                 {
-                    CurrentStage.stagePhase = StagePhase.End;
+                    CurrentStage.StagePhase = StagePhase.End;
                 }
                 break;
             case StagePhase.End:
-                (StagePhaseState endState, StageOutcome stageOutcome) = CurrentStage.End();
+                StagePhaseState endState = CurrentStage.End();
                 if (endState == StagePhaseState.Done)
                 {
-                    CurrentStage.stagePhase = StagePhase.Shutdown;
+                    CurrentStage.StagePhase = StagePhase.Shutdown;
                 }
                 break;
             case StagePhase.Shutdown:
                 StagePhaseState shutdownState = CurrentStage.Shutdown();
                 if (shutdownState == StagePhaseState.Done)
                 {
-                    CurrentStage.stagePhase = StagePhase.Unloaded;
+                    CurrentStage.StagePhase = StagePhase.Unloaded;
                 }
                 break;
             default:
                 break;
         }
 
-        return false;
+        return (StagePhaseState.Active, CurrentStage.StageOutcome);
     }
 }
 
@@ -95,6 +95,7 @@ public enum StagePhaseState
 
 public enum StageOutcome
 {
+    Undefined,
     Win,
     Lose
 }

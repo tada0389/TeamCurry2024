@@ -7,47 +7,59 @@ public class StatueStage : Stage
     public List<Sprite> sprites;
     [SerializeField] private int correctSpriteIndex;
     [SerializeField] private SpriteRenderer playerSpriteRenderer;
+    [SerializeField] private GameTimer gameTimer;
 
     private int currentSpriteIndex = 0;
 
     public override StagePhaseState Setup()
     {
+        gameTimer.SetTimer(this.timeLimit);
         return StagePhaseState.Done;
     }
 
     public override StagePhaseState StartStage()
     {
+        gameTimer.StartTimer();
         return StagePhaseState.Done;
     }
 
     public override StagePhaseState Play()
     {
-        if (Input.GetKeyDown(KeyCode.D))
+        if (gameTimer.TimerDone())
         {
-            currentSpriteIndex++;
-            if (currentSpriteIndex >= sprites.Count)
+            return StagePhaseState.Done;
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.D))
             {
-                currentSpriteIndex = 0;
+                currentSpriteIndex++;
+                if (currentSpriteIndex >= sprites.Count)
+                {
+                    currentSpriteIndex = 0;
+                }
+
+                playerSpriteRenderer.sprite = sprites[currentSpriteIndex];
+            }
+            else if (Input.GetKeyDown(KeyCode.A))
+            {
+                currentSpriteIndex--;
+                if (currentSpriteIndex < 0)
+                {
+                    currentSpriteIndex = sprites.Count - 1;
+                }
+
+                playerSpriteRenderer.sprite = sprites[currentSpriteIndex];
             }
 
-            playerSpriteRenderer.sprite = sprites[currentSpriteIndex];
+            return StagePhaseState.Active;
         }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
-            currentSpriteIndex--;
-            if (currentSpriteIndex <= 0)
-            {
-                currentSpriteIndex = sprites.Count + 1;
-            }
-        }
-
-        return StagePhaseState.Active;
     }
 
-    public override (StagePhaseState, StageOutcome) End()
+    public override StagePhaseState End()
     {
-        StageOutcome stageOutcome = playerSpriteRenderer.sprite == sprites[correctSpriteIndex] ? StageOutcome.Win : StageOutcome.Lose;
-        return (StagePhaseState.Done, stageOutcome);
+        this.StageOutcome = playerSpriteRenderer.sprite == sprites[correctSpriteIndex] ? StageOutcome.Win : StageOutcome.Lose;
+        return StagePhaseState.Done;
     }
 
     public override StagePhaseState Shutdown()

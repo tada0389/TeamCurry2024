@@ -3,7 +3,8 @@ using UnityEngine;
 
 public abstract class Stage : MonoBehaviour
 {
-    public StagePhase stagePhase = StagePhase.Unloaded;
+    public StagePhase StagePhase = StagePhase.Unloaded;
+    public StageOutcome StageOutcome = StageOutcome.Undefined;
 
     [SerializeField] protected float timeLimit;
 
@@ -13,7 +14,7 @@ public abstract class Stage : MonoBehaviour
 
     public abstract StagePhaseState Play();
 
-    public abstract (StagePhaseState, StageOutcome) End();
+    public abstract StagePhaseState End();
 
     public abstract StagePhaseState Shutdown();
 }

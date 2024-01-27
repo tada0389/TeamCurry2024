@@ -32,10 +32,10 @@ public class ChandelierStage : Stage
         return timer.TimerDone() ? StagePhaseState.Done : StagePhaseState.Active;
     }
 
-    public override (StagePhaseState, StageOutcome) End()
+    public override StagePhaseState End()
     {
         timer.PauseTimer();
-        return (StagePhaseState.Done, outcome);
+        return StagePhaseState.Done;
     }
 
     public override StagePhaseState Shutdown()
