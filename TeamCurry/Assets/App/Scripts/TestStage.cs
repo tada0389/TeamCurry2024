@@ -33,10 +33,10 @@ public class TestStage : Stage
         return StagePhaseState.Active;
     }
 
-    public override (StagePhaseState, StageOutcome) End()
+    public override StagePhaseState End()
     {
         Debug.Log("Stage end");
-        return (StagePhaseState.Done, StageOutcome.Win);
+        return StagePhaseState.Done;
     }
 
     public override StagePhaseState Shutdown()
