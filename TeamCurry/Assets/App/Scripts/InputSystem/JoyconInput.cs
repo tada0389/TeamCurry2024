@@ -230,9 +230,9 @@ namespace InputSystem
                 switch (code)
                 {
                     case AxisCode.Horizontal:
-                        return Input.GetAxis("Horizontal1");
+                        return Input.GetAxis("Horizontal");
                     case AxisCode.Vertical:
-                        return Input.GetAxis("Vertical1");
+                        return Input.GetAxis("Vertical");
                 }
                 return 0;
             };
