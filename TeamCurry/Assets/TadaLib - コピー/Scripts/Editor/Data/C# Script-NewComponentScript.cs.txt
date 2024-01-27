@@ -1,0 +1,57 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Assertions;
+using TadaLib.ProcSystem;
+using TadaLib.Extension;
+using TadaLib.ActionStd;
+using UniRx;
+
+namespace #DIRECTORYNAME#
+{
+    /// <summary>
+    /// #SCRIPTNAME#
+    /// </summary>
+    public class #SCRIPTNAME#
+        : BaseProc
+        , IProcUpdate
+        , IProcMove
+        , IProcPostMove
+    {
+        #region プロパティ
+        #endregion
+
+        #region メソッド
+        #endregion
+
+        #region MonoBehavior の実装
+        void Start()
+        {
+        }
+        #endregion
+
+        #region IProcUpdate の実装
+        public void OnUpdate()
+        {
+        }
+        #endregion
+
+        #region IProcMove の実装
+        public void OnMove()
+        {
+        }
+        #endregion
+
+        #region IProcPostMove の実装
+        public void OnPostMove()
+        {
+        }
+        #endregion
+
+        #region privateフィールド
+        #endregion
+
+        #region privateメソッド
+        #endregion
+    }
+}

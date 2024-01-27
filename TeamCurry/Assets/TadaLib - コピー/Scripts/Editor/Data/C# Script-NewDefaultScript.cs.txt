@@ -1,0 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Assertions;
+using TadaLib.ProcSystem;
+using TadaLib.Extension;
+using TadaLib.ActionStd;
+using UniRx;
+
+namespace #DIRECTORYNAME#
+{
+    /// <summary>
+    /// #SCRIPTNAME#
+    /// </summary>
+    public class #SCRIPTNAME#
+    {
+    }
+}
