@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,17 +7,15 @@ public class GameManager : MonoBehaviour
     {
         Menu,
         Load,
-        Stage
+        Stage,
+        EndScreen
     }
 
-    [SerializeField] private List<Stage> stages;
+    [SerializeField] private StageManager stageManager;
     [SerializeField] private GameState gameState;
-
-    private Stage currentStage;
 
     private void Start()
     {
-        currentStage = null;
         gameState = GameState.Menu;
     }
 
@@ -33,7 +30,10 @@ public class GameManager : MonoBehaviour
                 Load();
                 break;
             case GameState.Stage:
-                currentStage.UpdateStage();
+                UpdateStage();
+                break;
+            case GameState.EndScreen:
+                EndScreen();
                 break;
         }
     }
@@ -42,15 +42,34 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Load stage 1");
-            currentStage = stages[0];
             gameState = GameState.Load;
         }
     }
 
     private void Load()
     {
-        currentStage.LoadStage();
-        gameState = GameState.Stage;
+        bool loaded = stageManager.LoadNextStage();
+        if (loaded)
+        {
+            gameState = GameState.Stage;
+        }
+        else
+        {
+            gameState = GameState.EndScreen;
+        }
+    }
+
+    private void UpdateStage()
+    {
+        bool stageEnded = stageManager.UpdateStage();
+        if (stageEnded)
+        {
+            this.gameState = GameState.Load;
+        }
+    }
+
+    private void EndScreen()
+    {
+        Debug.Log("end screen");
     }
 }
