@@ -2000,11 +2000,11 @@ PrefabInstance:
     - target: {fileID: 5796925059422700631, guid: 8c59528782d124417aa50fc25f6eaad0, type: 3}
       propertyPath: _beginSprites.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: 4610d27f2d87b1f4a9bf31d1ab4100ca, type: 3}
+      objectReference: {fileID: 21300000, guid: d2494e005ec076e46a57ed84777e0ec2, type: 3}
     - target: {fileID: 5796925059422700631, guid: 8c59528782d124417aa50fc25f6eaad0, type: 3}
       propertyPath: _beginSprites.Array.data[2]
       value: 
-      objectReference: {fileID: 21300000, guid: d2494e005ec076e46a57ed84777e0ec2, type: 3}
+      objectReference: {fileID: 21300000, guid: 4610d27f2d87b1f4a9bf31d1ab4100ca, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
