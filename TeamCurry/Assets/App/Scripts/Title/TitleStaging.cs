@@ -93,17 +93,17 @@ namespace Title
         {
             Ui.CurtainCtrl.Instance.SetCloseForce();
 
+            await UniTask.Yield();
+
             // wait for language choose input
             //await UniTask.WaitUntil(() => JoyconInput.Instance.GetButtonDown(ButtonCode.Jump));
             // await UniTask.WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-            while (!Input.GetKeyDown(KeyCode.Space))
+            while (!InputSystem.JoyconInput.Instance.IsAnyButtonDown && !Input.GetKeyDown(KeyCode.Space))
             {
                 // update
                 var first = true;
                 var isLeftPrev = true;
-                // var stickX = InputSystem.JoyconInput.Instance.GetAxis(AxisCode.Horizontal);
-                var stickX = Input.GetAxis("Horizontal");
-                Debug.Log(stickX);
+                var stickX = InputSystem.JoyconInput.Instance.GetAxis(AxisCode.Horizontal);
                 switch (stickX)
                 {
                     case < 0:
@@ -152,7 +152,7 @@ namespace Title
             _titleMenuCanvas.DOFade(1.0f, 0.3f);
 
             // wait for language choose input
-            await UniTask.WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+            await UniTask.WaitUntil(() => InputSystem.JoyconInput.Instance.IsAnyButtonDown || Input.GetKeyDown(KeyCode.Space));
             //await UniTask.WaitUntil(() => JoyconInput.Instance.GetButtonDown(ButtonCode.Jump));
 
             // Close curtain

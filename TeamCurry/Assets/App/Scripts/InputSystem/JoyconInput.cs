@@ -44,6 +44,14 @@ namespace InputSystem
         public JoyconSensor GetJoyconAccel { get; private set; }
         public JoyconStick GetJoyconStick { get; private set; }
 
+        public bool IsAnyButtonDown
+        {
+            get
+            {
+                return GetButtonDown(ButtonCode.Jump) || GetButton(ButtonCode.Cancel) || GetButtonDown(ButtonCode.DownArrow) || GetButtonDown(ButtonCode.LeftArrow) || GetButtonDown(ButtonCode.RightArrow) || GetButtonDown(ButtonCode.UpArrow);
+            }
+        }            
+
         static float joyconAngle = 180;
 
         /// <summary>
