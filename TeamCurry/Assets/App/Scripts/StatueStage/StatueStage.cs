@@ -111,6 +111,7 @@ public class StatueStage : Stage
         this.gameObject.SetActive(false);
         playerSpriteRenderer.sprite = originalPlayerSprite;
         gameTimer.PauseTimer();
+        player.gameObject.SetActive(false);
         return StagePhaseState.Done;
     }
 

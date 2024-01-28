@@ -35,7 +35,7 @@ public class GameTimer : MonoBehaviour
         }
     }
 
-    public float RateTime01 => 1.0f - (initialTime - time) / initialTime;
+    public float RateTime01 => (initialTime - time) / initialTime;
     public bool TimerDone()
     {
         return time <= 0;
