@@ -1,16 +1,24 @@
+using DG.Tweening;
+using DG.Tweening.Plugins.Options;
 using UnityEngine;
 
 public class ChandelierStage : Stage
 {
-    private Vector3 chandelierMovement;
     private bool playerAttached;
     private StageOutcome outcome;
-    
+    private Tweener chandelierTweener;
+    private Quaternion previousRotation;
+    [SerializeField] private Transform chandelierOffsetTransform;
+    [SerializeField] private Vector3 startRotation;
+    [SerializeField] private Vector3 endRotation;
     [SerializeField] private GameTimer timer;
+    [SerializeField] private float swingDuration;
 
     public override StagePhaseState Setup()
     {
-        chandelierMovement = Vector3.zero;
+        chandelierOffsetTransform.rotation = new Quaternion(0, 0, 0, 0);
+        previousRotation = chandelierOffsetTransform.rotation;
+        chandelierOffsetTransform.rotation = IncreaseRotation();
         playerAttached = false;
         outcome = StageOutcome.Lose;
         timer.SetTimer(timeLimit);
@@ -19,6 +27,7 @@ public class ChandelierStage : Stage
 
     public override StagePhaseState StartStage()
     {
+        // chandelierTweener = chandelierOffsetTransform.DORotate(endRotation, swingDuration).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
         return StagePhaseState.Done;
     }
 
@@ -29,11 +38,35 @@ public class ChandelierStage : Stage
             outcome = StageOutcome.Win;
         }
 
+        if (chandelierOffsetTransform.rotation.z > previousRotation.z)
+        {
+            if (chandelierOffsetTransform.rotation.z == 60f)
+            {
+                chandelierOffsetTransform.rotation = DecreaseRotation();
+            }
+            else
+            {
+                chandelierOffsetTransform.rotation = IncreaseRotation();
+            }
+        }
+        else
+        {
+            if (chandelierOffsetTransform.rotation.z == -60f)
+            {
+                chandelierOffsetTransform.rotation = IncreaseRotation();
+            }
+            else
+            {
+                chandelierOffsetTransform.rotation = DecreaseRotation();
+            }
+        }
+
         return timer.TimerDone() ? StagePhaseState.Done : StagePhaseState.Active;
     }
 
     public override StagePhaseState End()
     {
+        chandelierTweener.Kill();
         timer.PauseTimer();
         return StagePhaseState.Done;
     }
@@ -41,5 +74,14 @@ public class ChandelierStage : Stage
     public override StagePhaseState Shutdown()
     {
         return StagePhaseState.Done;
+    }
+
+    private Quaternion IncreaseRotation()
+    {
+        return new Quaternion(previousRotation.x, previousRotation.y, previousRotation.z++, previousRotation.w);
+    }
+    private Quaternion DecreaseRotation()
+    {
+        return new Quaternion(previousRotation.x, previousRotation.y, previousRotation.z--, previousRotation.w);
     }
 }

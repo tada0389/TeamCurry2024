@@ -4,9 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Unity.VisualScripting;
+using System;
 
 namespace Title
 {
+    public enum CurtainState
+    {
+        Open,
+        Closed
+    }
+
     public class TitleStaging : MonoBehaviour
     {
         // Start is called before the first frame update
@@ -28,7 +36,41 @@ namespace Title
         float _curtainOpenDurationSec = 0.5f;
         [SerializeField]
         float _curtainCloseDurationSec = 0.5f;
+
+        [SerializeField]
+        GameObject _titleMenuCanvasObject;
+
+        [SerializeField]
+        private float delaySecondsOnOpenClose = 1f;
         #endregion
+
+        public bool MenuComplete = false;
+        public CurtainState CurtainState = CurtainState.Closed;
+
+        public void OpenCurtains()
+        {            
+            UniTask.Create(async () => 
+            {
+                await Ui.CurtainCtrl.Instance.OpenStaging(_curtainOpenDurationSec);
+                await UniTask.WaitForSeconds(delaySecondsOnOpenClose);
+                this.CurtainState = CurtainState.Open;
+            });
+        }
+
+        public void CloseCurtains()
+        {
+            UniTask.Create(async () =>
+            {
+                await Ui.CurtainCtrl.Instance.CloseStaging(_curtainCloseDurationSec);
+                await UniTask.WaitForSeconds(delaySecondsOnOpenClose);
+                this.CurtainState = CurtainState.Closed;
+            });
+        }
+
+        public void HideTitleScreen()
+        {
+            this._titleMenuCanvasObject.SetActive(false);
+        }
 
         #region private method
         async UniTask StartStaging()
@@ -63,6 +105,11 @@ namespace Title
 
             // Close curtain
             await Ui.CurtainCtrl.Instance.CloseStaging(_curtainCloseDurationSec);
+
+            await UniTask.WaitForSeconds(delaySecondsOnOpenClose);
+
+            CurtainState = CurtainState.Closed;
+            MenuComplete = true;
         }
         #endregion
     }
