@@ -246,7 +246,7 @@ PrefabInstance:
       objectReference: {fileID: 1349981340}
     - target: {fileID: 887752830390657215, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
       propertyPath: timeLimit
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 887752830390657215, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
       propertyPath: correctSpriteIndex
@@ -1168,6 +1168,7 @@ MonoBehaviour:
   _curtainOpenDurationSec: 0.7
   _curtainCloseDurationSec: 0.7
   _titleMenuCanvasObject: {fileID: 27800406}
+  delaySecondsOnOpenClose: 1
   MenuComplete: 0
   CurtainState: 1
 --- !u!1 &964781647
