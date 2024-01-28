@@ -14,6 +14,7 @@ public class GameTimer : MonoBehaviour
     
     void Awake()
     {
+        isTimerPaused = true;
         time = maxTime;
         guardPosCreep = Vector3.zero;
     }
