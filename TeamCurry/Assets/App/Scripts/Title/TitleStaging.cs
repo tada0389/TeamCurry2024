@@ -45,7 +45,8 @@ namespace Title
             while (!Input.GetKeyDown(KeyCode.Space))
             {
                 // update
-                var isLeftPrev;
+                var first = true;
+                var isLeftPrev = true;
                 // var stickX = InputSystem.JoyconInput.Instance.GetAxis(AxisCode.Horizontal);
                 var stickX = Input.GetAxis("Horizontal");
                 Debug.Log(stickX);
@@ -53,8 +54,9 @@ namespace Title
                 {
                     case < 0:
                         // _japaneseLanguageImage.DOKill(true);
-                        if (!isLeftPrev)
+                        if (first || !isLeftPrev)
                         {
+                            first = false;
                             isLeftPrev = true;
                             _japaneseLanguageImage.rectTransform.DOScale(1.0f, 0.1f);
                             _englishLanguageImage.rectTransform.DOScale(2.0f, 0.1f);
@@ -63,8 +65,9 @@ namespace Title
                         break;
                     case > 0:
                         // _englishLanguageImage.DOKill(true);
-                        if (isLeftPrev)
+                        if (first || isLeftPrev)
                         {
+                            first = false;
                             isLeftPrev = false;
                             _englishLanguageImage.rectTransform.DOScale(1.0f, 0.1f);
                             _japaneseLanguageImage.rectTransform.DOScale(2.0f, 0.1f);
