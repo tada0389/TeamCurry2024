@@ -93,8 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5599674642603174663}
-  - component: {fileID: 887752830390657215}
-  - component: {fileID: 3975874012672021258}
+  - component: {fileID: 419044408838891354}
   m_Layer: 0
   m_Name: DiamondStage
   m_TagString: Untagged
@@ -119,7 +118,7 @@ Transform:
   - {fileID: 2375379468455455490}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &887752830390657215
+--- !u!114 &419044408838891354
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,33 +127,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4649871045761164221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfa8791ba6fa64844bdd0871eeaa4f2a, type: 3}
+  m_Script: {fileID: 11500000, guid: e6adf8082fc744b54ad42b06d2b014a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   StagePhase: 0
   StageOutcome: 0
+  guard: {fileID: 0}
   timeLimit: 0
-  sprites: []
-  correctSpriteIndex: 0
-  playerSpriteRenderer: {fileID: 0}
-  gameTimer: {fileID: 0}
-  switchPoseAnimation: {fileID: 0}
---- !u!114 &3975874012672021258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4649871045761164221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fe99b1ff5ffe41d58c8841175530719, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
-  scaleFactorX: 0
-  scaleFactorY: 0
-  animationDuration: 0.1
 --- !u!1001 &3064122441915985629
 PrefabInstance:
   m_ObjectHideFlags: 0
