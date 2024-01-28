@@ -44,6 +44,14 @@ namespace InputSystem
         public JoyconSensor GetJoyconAccel { get; private set; }
         public JoyconStick GetJoyconStick { get; private set; }
 
+        public bool IsAnyButtonDown
+        {
+            get
+            {
+                return GetButtonDown(ButtonCode.Jump) || GetButton(ButtonCode.Cancel) || GetButtonDown(ButtonCode.DownArrow) || GetButtonDown(ButtonCode.LeftArrow) || GetButtonDown(ButtonCode.RightArrow) || GetButtonDown(ButtonCode.UpArrow);
+            }
+        }            
+
         static float joyconAngle = 180;
 
         /// <summary>
@@ -102,14 +110,11 @@ namespace InputSystem
         {
             foreach (Joycon joycon in JoyconManager.Instance.j)
             {
-                if (joycon.GetButton(Joycon.Button.SL) && joycon.GetButton(Joycon.Button.SR))
+                if (joycon.GetButton(Joycon.Button.SL) || joycon.GetButton(Joycon.Button.SR) || joycon.GetButton(Joycon.Button.SHOULDER_1) || joycon.GetButton(Joycon.Button.SHOULDER_2))
                 {
                     _stickJoycon = joycon;
                     SetControllerJoycon(_stickJoycon);
-                }
 
-                if (joycon.GetButton(Joycon.Button.SHOULDER_1) && joycon.GetButton(Joycon.Button.SHOULDER_2))
-                {
                     _gyroJoycon = joycon;
                     SetSensorJoycon(_gyroJoycon);
                 }
@@ -281,7 +286,7 @@ namespace InputSystem
 
             GetJoyconStick = () =>
             {
-                return new float[] { Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") };
+                return new float[] { Input.GetAxis("Vertical"), -Input.GetAxis("Horizontal") };
             };
         }
 

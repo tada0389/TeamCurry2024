@@ -34,18 +34,17 @@ public class VaseStage : Stage
 
     public override StagePhaseState Play()
     {
-        if (thiefTransform.position.x == 21)
+        if (gameTimer.TimerDone())
+        {
+             StageOutcome = StageOutcome.Lose;
+        } else if (thiefTransform.position.x == 21)
         {
             StageOutcome = StageOutcome.Win;
             return StagePhaseState.Done;
         }
 
-        if (StageOutcome == StageOutcome.Lose)
-        {
-             return StagePhaseState.Done;           
-        }
-
-        return gameTimer.TimerDone() ? StagePhaseState.Done : StagePhaseState.Active;
+        // if a vase breaks, it will change the outcome to lose - see VaseCtrl.cs
+        return (StageOutcome == StageOutcome.Lose) ? StagePhaseState.Done : StagePhaseState.Active;
     }
 
     public override StagePhaseState End()

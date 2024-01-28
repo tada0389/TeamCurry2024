@@ -1,9 +1,11 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using InputSystem;
 using System.Collections;
 using System.Collections.Generic;
 using Ui;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class StatueStage : Stage
 {
@@ -18,6 +20,7 @@ public class StatueStage : Stage
 
     private Sprite originalPlayerSprite;
     private int currentSpriteIndex = -1;
+    private float stickXPrev = 0.0f;
 
     private void Awake()
     {
@@ -54,7 +57,29 @@ public class StatueStage : Stage
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.D))
+
+            var isLeftDown = false;
+            var isRightDown = false;
+
+            var stickX = InputSystem.JoyconInput.Instance.GetAxis(AxisCode.Horizontal);
+            switch (stickX)
+            {
+                case < 0:
+                    if (stickXPrev >= 0.0f)
+                    {
+                        isLeftDown = true;
+                    }
+                    break;
+                case > 0:
+                    if (stickXPrev >= 0.0f)
+                    {
+                        isRightDown = true;
+                    }
+                    break;
+            }
+
+            stickXPrev = stickX;
+            if (isLeftDown || Input.GetKeyDown(KeyCode.A))
             {
                 currentSpriteIndex++;
                 if (currentSpriteIndex >= sprites.Count)
@@ -64,7 +89,7 @@ public class StatueStage : Stage
 
                 SwitchSprite();
             }
-            else if (Input.GetKeyDown(KeyCode.A))
+            else if (isRightDown || Input.GetKeyDown(KeyCode.D))
             {
                 currentSpriteIndex--;
                 if (currentSpriteIndex < 0)
@@ -80,7 +105,7 @@ public class StatueStage : Stage
     }
 
     public override StagePhaseState End()
-    {        
+    {
         switch (guard.AnimState)
         {
             case AnimState.Inactive:
