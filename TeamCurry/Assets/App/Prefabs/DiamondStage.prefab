@@ -136,7 +136,7 @@ MonoBehaviour:
   timeLimit: 0
   thiefTransform: {fileID: 0}
   timer: {fileID: 0}
-  diamondRenderer: {fileID: 0}
+  diamondRenderer: {fileID: 5441036065179304765}
 --- !u!1001 &3064122441915985629
 PrefabInstance:
   m_ObjectHideFlags: 0

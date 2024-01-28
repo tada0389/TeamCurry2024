@@ -7,9 +7,22 @@ public class DiamondStage : Stage
     [SerializeField] private Transform thiefTransform;
     [SerializeField] private GameTimer timer;
     [SerializeField] private Renderer diamondRenderer;
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private Transform playerStart;
+    [SerializeField] private App.Actor.Player.MoveCtrl playerMove;
+
+    private void Awake()
+    {
+        this.gameObject.SetActive(false);    
+    }
 
     public override StagePhaseState Setup()
     {
+        guard.Reset();
+        playerTransform.gameObject.SetActive(true);
+        playerTransform.position = playerStart.position;
+        playerMove.enabled = true;
+        this.gameObject.SetActive(true);
         return StagePhaseState.Done;
     }
 
@@ -22,11 +35,11 @@ public class DiamondStage : Stage
     {
         if (timer.TimerDone())
         {
-             StageOutcome = StageOutcome.Lose;           
+             StageOutcome = StageOutcome.Win;           
              return StagePhaseState.Done;
         }
 
-        if (thiefTransform.position.x == 0)
+        if (thiefTransform.position.x >= -.5)
         {
             diamondRenderer.enabled = false;
             StageOutcome = StageOutcome.Win;
@@ -43,6 +56,11 @@ public class DiamondStage : Stage
 
     public override StagePhaseState Shutdown()
     {
+        guard.Reset();
+        playerTransform.gameObject.SetActive(false);
+        playerTransform.position = playerStart.position;
+        playerMove.enabled = false;
+        this.gameObject.SetActive(false);
         return StagePhaseState.Done;
     }
 }
