@@ -6,6 +6,7 @@ using TadaLib.ProcSystem;
 using TadaLib.Extension;
 using TadaLib.ActionStd;
 using UniRx;
+using KanKikuchi.AudioManager;
 
 namespace Actor.Gimmick
 {
@@ -30,6 +31,17 @@ namespace Actor.Gimmick
         #endregion
 
         #region メソッド
+        public void Drop()
+        {
+            if (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f)
+            {
+                SEManager.Instance.Play(SEPath.VASE_BREAK_1);
+            }
+            else
+            {
+                SEManager.Instance.Play(SEPath.VASE_BREAK_2);
+            }
+        }
         #endregion
 
         #region MonoBehavior の実装
@@ -55,7 +67,18 @@ namespace Actor.Gimmick
                     if (_state == State.Dropping)
                     {
                         GetComponent<SimpleAnimation>().Play("Dropping");
-                        _vaseStage.StageOutcome = StageOutcome.Lose;
+                        if (_vaseStage != null)
+                        {
+                            _vaseStage.StageOutcome = StageOutcome.Lose;
+                        }
+                        if (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f)
+                        {
+                            SEManager.Instance.Play(SEPath.VASE_HIT_HEAVY_1);
+                        }
+                        else
+                        {
+                            SEManager.Instance.Play(SEPath.VASE_HIT_HEAVY_2);
+                        }
                     }
                     else if (_state == State.Sway)
                     {

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using KanKikuchi.AudioManager;
 
 namespace Ui
 {
@@ -11,6 +12,7 @@ namespace Ui
         #region method
         public async UniTask OpenStaging(float durationSec)
         {
+            KanKikuchi.AudioManager.SEManager.Instance.Play(SEPath.CURTAINS_OPEN);
             _leftCurtain.rectTransform.DOLocalMoveX(-1330.0f, durationSec);
             _rightCurtain.rectTransform.DOLocalMoveX(1330.0f, durationSec);
 
@@ -19,6 +21,8 @@ namespace Ui
 
         public async UniTask CloseStaging(float durationSec)
         {
+            KanKikuchi.AudioManager.SEManager.Instance.Play(SEPath.CURTAINS_CLOSE);
+
             _leftCurtain.rectTransform.DOLocalMoveX(-480.0f, durationSec);
             _rightCurtain.rectTransform.DOLocalMoveX(480.0f, durationSec);
 
