@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:TeamCurry/Assets/App/Sounds/SFX/Chandelier_squeak_2.mp3.meta
+guid: 74ebf28a9c2ea40feae805d837148a09
+=======
 guid: 6f36a111eea874eafa0e99edab260758
+>>>>>>> main:TeamCurry/Assets/App/Sounds/SFX/Footstep_player_3.mp3.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 7
