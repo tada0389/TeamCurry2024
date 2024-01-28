@@ -7,6 +7,7 @@ using DG.Tweening;
 using Unity.VisualScripting;
 using System;
 using Ui;
+using KanKikuchi.AudioManager;
 
 namespace Title
 {
@@ -138,6 +139,8 @@ namespace Title
                 await UniTask.Yield();
             }
 
+            SEManager.Instance.Play(SEPath.MENU_VALIDATION);
+
             _languageCanvas.DOFade(0.0f, _fadeOutLanguageCanvasDurationSec);
 
             await UniTask.WaitForSeconds(_fadeOutLanguageCanvasDurationSec);
@@ -160,6 +163,8 @@ namespace Title
             await UniTask.WaitUntil(() => InputSystem.JoyconInput.Instance.IsAnyButtonDown || Input.GetKeyDown(KeyCode.Space));
             //await UniTask.WaitUntil(() => JoyconInput.Instance.GetButtonDown(ButtonCode.Jump));
 
+            SEManager.Instance.Play(SEPath.GAME_START_SELECTED);
+
             // Close curtain
             await Ui.CurtainCtrl.Instance.CloseStaging(_curtainCloseDurationSec);
 
@@ -167,6 +172,8 @@ namespace Title
 
             CurtainState = CurtainState.Closed;
             MenuComplete = true;
+
+            BGMManager.Instance.Play(BGMPath.WAYIN_MUSIC, delay: 3.0f);
         }
         #endregion
     }

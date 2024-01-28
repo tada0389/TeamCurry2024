@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using KanKikuchi.AudioManager;
 using UnityEngine;
 
 public class SwitchPoseAnimation : MonoBehaviour
@@ -21,7 +22,9 @@ public class SwitchPoseAnimation : MonoBehaviour
 
     public void Do()
     {
+        SEManager.Instance.Play(SEPath.STATUE_POSE_SELECTION);
+
         spriteTween.Restart();
-        spriteTween.Play();
+        spriteTween.Play().OnComplete(() => SEManager.Instance.Play(SEPath.STATUE_POSE_CHANGE));
     }
 }
