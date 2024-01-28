@@ -33,6 +33,7 @@ namespace InputSystem
         public delegate bool Button(ButtonCode code);
         public delegate float Axis(AxisCode code);
         public delegate Vector3 JoyconSensor();
+        public delegate float[] JoyconStick();
         public Button GetButtonDown { get; private set; }
         public Button GetButton { get; private set; }
         public Button GetButtonUp { get; private set; }
@@ -41,6 +42,7 @@ namespace InputSystem
         public JoyconSensor GetJoyconVector { get; private set; }
         public JoyconSensor GetJoyconGyro { get; private set; }
         public JoyconSensor GetJoyconAccel { get; private set; }
+        public JoyconStick GetJoyconStick { get; private set; }
 
         static float joyconAngle = 180;
 
@@ -230,9 +232,11 @@ namespace InputSystem
                 switch (code)
                 {
                     case AxisCode.Horizontal:
-                        return Input.GetAxis("Horizontal");
+                        return -GetJoyconStick()[1];
+                        //return Input.GetAxis("Horizontal");
                     case AxisCode.Vertical:
-                        return Input.GetAxis("Vertical");
+                        return GetJoyconStick()[0];
+                        //return Input.GetAxis("Vertical");
                 }
                 return 0;
             };
@@ -259,6 +263,11 @@ namespace InputSystem
             GetJoyconAccel = () =>
             {
                 return new Vector3(Input.GetAxis("Vertical") * 10, 1, 0);
+            };
+
+            GetJoyconStick = () =>
+            {
+                return new float[]{ Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") };
             };
         }
 
@@ -470,6 +479,8 @@ namespace InputSystem
             GetJoyconGyro = joycon.GetGyro;
 
             GetJoyconAccel = joycon.GetAccel;
+
+            GetJoyconStick = joycon.GetStick;
         }
 
         #region private フィールド

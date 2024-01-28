@@ -46,4 +46,8 @@ TestPlayPackage.asset
 TestPlayPackage.asset.meta
 TeamCurry/UserSettings
 TeamCurry/.vscode
-TeamCurry/UserSettings
+
+# force fix
+TeamCurry/Assets/App/Graphics/*.meta
+TeamCurry/Assets/App/Sounds/*.meta
+TeamCurry/UserSettings/EditorUserSettings.asset
