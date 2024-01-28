@@ -19,6 +19,7 @@ namespace Actor.Gimmick
     {
         #region プロパティ
         public float AngularVelocity => _angularVelocity;
+        public float AngleDeg => _angle * Mathf.Rad2Deg;
         #endregion
 
         #region メソッド

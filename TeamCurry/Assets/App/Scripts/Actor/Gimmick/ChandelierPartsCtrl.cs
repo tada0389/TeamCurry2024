@@ -29,7 +29,7 @@ namespace Actor.Gimmick
         #region IProcMove の実装
         public void OnMove()
         {
-            transform.localEulerAngles = new Vector3(0.0f, 0.0f, _chandelier.AngularVelocity * _random * _swingPower);
+            transform.localEulerAngles = new Vector3(0.0f, 0.0f, -_chandelier.AngularVelocity * _random * _swingPower);
         }
         #endregion
 
