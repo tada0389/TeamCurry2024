@@ -33,6 +33,11 @@ namespace Actor.Gimmick
         #region メソッド
         public void Drop()
         {
+            if (_vaseStage != null)
+            {
+                _vaseStage.StageOutcome = StageOutcome.Lose;
+            }
+
             if (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f)
             {
                 SEManager.Instance.Play(SEPath.VASE_BREAK_1);
@@ -67,10 +72,6 @@ namespace Actor.Gimmick
                     if (_state == State.Dropping)
                     {
                         GetComponent<SimpleAnimation>().Play("Dropping");
-                        if (_vaseStage != null)
-                        {
-                            _vaseStage.StageOutcome = StageOutcome.Lose;
-                        }
                         if (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f)
                         {
                             SEManager.Instance.Play(SEPath.VASE_HIT_HEAVY_1);

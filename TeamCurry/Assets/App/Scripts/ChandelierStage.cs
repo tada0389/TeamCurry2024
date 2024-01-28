@@ -59,7 +59,28 @@ public class ChandelierStage : Stage
     public override StagePhaseState End()
     {
         gameTimer.PauseTimer();
-        return StagePhaseState.Done;
+
+        switch (guard.AnimState)
+        {
+            case AnimState.Inactive:
+                if (StageOutcome == StageOutcome.Win)
+                {
+                    guard.PlayerWins();
+                }
+                else
+                {
+                    guard.PlayerLoses();
+                }
+                break;
+            case AnimState.Active:
+                break;
+            case AnimState.Done:
+                return StagePhaseState.Done;
+            default:
+                break;
+        }
+
+        return StagePhaseState.Active;
     }
 
     public override StagePhaseState Shutdown()
