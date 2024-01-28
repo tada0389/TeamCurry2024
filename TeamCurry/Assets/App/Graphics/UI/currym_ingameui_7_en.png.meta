@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 4ef1e35ec1061428b8941499d209efe2
+<<<<<<< HEAD:TeamCurry/Assets/App/Graphics/UI/currym_ingameui_8.png.meta
+guid: 133cc87c6c2b2465590e7a6bf574dde6
+=======
+guid: e4889cd9ae5b5d44a9eed6742f8b0e0d
+>>>>>>> main:TeamCurry/Assets/App/Graphics/UI/currym_ingameui_7_en.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
