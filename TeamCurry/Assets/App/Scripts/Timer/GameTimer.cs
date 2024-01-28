@@ -11,11 +11,13 @@ public class GameTimer : MonoBehaviour
     [SerializeField] private float time;
     private Vector3 guardPosCreep;
     private float prevTime;
+    private float initialTime;
     
     void Awake()
     {
         isTimerPaused = true;
         time = maxTime;
+        initialTime = maxTime;
         guardPosCreep = Vector3.zero;
     }
     
@@ -33,6 +35,7 @@ public class GameTimer : MonoBehaviour
         }
     }
 
+    public float RateTime01 => 1.0f - (initialTime - time) / initialTime;
     public bool TimerDone()
     {
         return time <= 0;
