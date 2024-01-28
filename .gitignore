@@ -48,6 +48,4 @@ TeamCurry/UserSettings
 TeamCurry/.vscode
 
 # force fix
-TeamCurry/Assets/App/Graphics/**.meta
-TeamCurry/Assets/App/Sounds/**.meta
 TeamCurry/UserSettings/EditorUserSettings.asset
