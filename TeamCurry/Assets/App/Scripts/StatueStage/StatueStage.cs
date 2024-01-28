@@ -26,7 +26,6 @@ public class StatueStage : Stage
     {
         originalPlayerSprite = playerSpriteRenderer.sprite;
         this.gameObject.SetActive(false);
-        KanKikuchi.AudioManager.SEManager.Instance.Play(KanKikuchi.AudioManager.SEPath.SYSTEM20);
     }
 
     public override StagePhaseState Setup()
