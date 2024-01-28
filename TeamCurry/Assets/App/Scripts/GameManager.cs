@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private StageManager stageManager;
     [SerializeField] private GameState gameState;
+    [SerializeField] private Title.TitleStaging titleStaging;
 
     private void Start()
     {
@@ -44,8 +45,9 @@ public class GameManager : MonoBehaviour
 
     private void Menu()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (titleStaging.MenuComplete)
         {
+            titleStaging.HideTitleScreen();
             gameState = GameState.Load;
         }
     }
@@ -71,20 +73,19 @@ public class GameManager : MonoBehaviour
 
     private void UpdateStage()
     {
-        var stageNextStep = stageManager.UpdateStage();
-        if (stageNextStep.Item1 == StagePhaseState.Done)
+        StagePhaseState stagePhaseState = stageManager.UpdateStage();
+        if (stagePhaseState == StagePhaseState.Done)
         {
-            switch (stageNextStep.Item2)
+            switch (this.stageManager.CurrentStage.StageOutcome)
             {
                 case StageOutcome.Undefined:
-                    throw new System.InvalidOperationException();
+                    Debug.LogError("o no");
+                    break;
                 case StageOutcome.Win:
                     this.gameState = GameState.Load;
                     break;
                 case StageOutcome.Lose:
                     this.gameState = GameState.Reload;
-                    break;
-                default:
                     break;
             }
         }

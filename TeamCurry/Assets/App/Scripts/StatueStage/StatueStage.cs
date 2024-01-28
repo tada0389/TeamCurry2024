@@ -13,9 +13,16 @@ public class StatueStage : Stage
 
     private int currentSpriteIndex = 0;
 
+    private void Awake()
+    {
+        this.gameObject.SetActive(false);
+    }
+
     public override StagePhaseState Setup()
     {
+        this.gameObject.SetActive(true);
         gameTimer.SetTimer(this.timeLimit);
+        this.StageOutcome = StageOutcome.Undefined;
         return StagePhaseState.Done;
     }
 
@@ -66,6 +73,7 @@ public class StatueStage : Stage
 
     public override StagePhaseState Shutdown()
     {
+        this.gameObject.SetActive(false);
         return StagePhaseState.Done;
     }
 
