@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -15,6 +16,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private StageManager stageManager;
     [SerializeField] private GameState gameState;
     [SerializeField] private Title.TitleStaging titleStaging;
+
+    private void Awake()
+    {
+        DOTween.SetTweensCapacity(500, 50);
+    }
 
     private void Start()
     {

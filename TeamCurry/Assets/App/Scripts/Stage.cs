@@ -5,6 +5,7 @@ public abstract class Stage : MonoBehaviour
 {
     public StagePhase StagePhase = StagePhase.Unloaded;
     public StageOutcome StageOutcome = StageOutcome.Undefined;
+    [SerializeField] public GuardAnimation guard;
 
     [SerializeField] protected float timeLimit;
 

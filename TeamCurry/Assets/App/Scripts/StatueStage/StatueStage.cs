@@ -16,6 +16,7 @@ public class StatueStage : Stage
     private void Awake()
     {
         this.gameObject.SetActive(false);
+        KanKikuchi.AudioManager.SEManager.Instance.Play(KanKikuchi.AudioManager.SEPath.SYSTEM20);
     }
 
     public override StagePhaseState Setup()
@@ -23,17 +24,20 @@ public class StatueStage : Stage
         this.gameObject.SetActive(true);
         gameTimer.SetTimer(this.timeLimit);
         this.StageOutcome = StageOutcome.Undefined;
+        guard.Reset();
         return StagePhaseState.Done;
     }
 
     public override StagePhaseState StartStage()
     {
+        Debug.Log("START");
         gameTimer.StartTimer();
         return StagePhaseState.Done;
     }
 
     public override StagePhaseState Play()
     {
+        Debug.Log("PLAY");
         if (gameTimer.TimerDone())
         {
             return StagePhaseState.Done;
@@ -66,9 +70,29 @@ public class StatueStage : Stage
     }
 
     public override StagePhaseState End()
-    {
-        this.StageOutcome = playerSpriteRenderer.sprite == sprites[correctSpriteIndex] ? StageOutcome.Win : StageOutcome.Lose;
-        return StagePhaseState.Done;
+    {        
+        switch (guard.AnimState)
+        {
+            case AnimState.Inactive:
+                this.StageOutcome = playerSpriteRenderer.sprite == sprites[correctSpriteIndex] ? StageOutcome.Win : StageOutcome.Lose;
+                if (StageOutcome == StageOutcome.Win)
+                {
+                    guard.PlayerWins();
+                }
+                else
+                {
+                    guard.PlayerLoses();
+                }
+                break;
+            case AnimState.Active:
+                break;
+            case AnimState.Done:
+                return StagePhaseState.Done;
+            default:
+                break;
+        }
+
+        return StagePhaseState.Active;
     }
 
     public override StagePhaseState Shutdown()
