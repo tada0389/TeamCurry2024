@@ -12,6 +12,9 @@ public class StatueStage : Stage
     [SerializeField] private SpriteRenderer playerSpriteRenderer;
     [SerializeField] private GameTimer gameTimer;
     [SerializeField] private SwitchPoseAnimation switchPoseAnimation;
+    [SerializeField] private Transform player;
+    [SerializeField] private Transform playerStartPosition;
+    [SerializeField] private Animator playerAnimator;
 
     private Sprite originalPlayerSprite;
     private int currentSpriteIndex = -1;
@@ -25,6 +28,8 @@ public class StatueStage : Stage
 
     public override StagePhaseState Setup()
     {
+        playerAnimator.enabled = false;
+        player.position = playerStartPosition.position;
         this.gameObject.SetActive(true);
         gameTimer.SetTimer(this.timeLimit);
         gameTimer.PauseTimer();

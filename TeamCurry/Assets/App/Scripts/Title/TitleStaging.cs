@@ -52,23 +52,28 @@ namespace Title
         StageBeginUiCtrl _stageBeginUiCtrl;
         [SerializeField]
         List<Sprite> _beginSprites;
-        int _curSpriteIdx = 0;
+        int _curSpriteIdx = -1;
         #endregion
 
         public bool MenuComplete = false;
         public CurtainState CurtainState = CurtainState.Closed;
 
+        public void IncrementSpriteCtr()
+        {
+            _curSpriteIdx++;
+            if (_curSpriteIdx >= _beginSprites.Count)
+            {
+                _curSpriteIdx--;
+            }
+        }
+
         public void OpenCurtains()
         {
             UniTask.Create(async () =>
             {
-                await _stageBeginUiCtrl.AppearText(_beginSprites[_curSpriteIdx++]);
-                if (_beginSprites.Count <= _curSpriteIdx)
-                {
-                    _curSpriteIdx = 0;
-                }
+                await _stageBeginUiCtrl.AppearText(_beginSprites[_curSpriteIdx]);
                 await Ui.CurtainCtrl.Instance.OpenStaging(_curtainOpenDurationSec);
-                await UniTask.WaitForSeconds(delaySecondsOnOpenClose);
+                // await UniTask.WaitForSeconds(delaySecondsOnOpenClose);
                 this.CurtainState = CurtainState.Open;
             });
         }

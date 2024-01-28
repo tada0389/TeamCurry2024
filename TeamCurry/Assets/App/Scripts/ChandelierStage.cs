@@ -14,8 +14,14 @@ public class ChandelierStage : Stage
     [SerializeField] private GameTimer timer;
     [SerializeField] private float swingDuration;
 
+    private void Awake()
+    {
+        this.gameObject.SetActive(false);
+    }
+
     public override StagePhaseState Setup()
     {
+        this.gameObject.SetActive(true);
         chandelierOffsetTransform.rotation = new Quaternion(0, 0, 0, 0);
         previousRotation = chandelierOffsetTransform.rotation;
         chandelierOffsetTransform.rotation = IncreaseRotation();
@@ -73,6 +79,7 @@ public class ChandelierStage : Stage
 
     public override StagePhaseState Shutdown()
     {
+        this.gameObject.SetActive(false);
         return StagePhaseState.Done;
     }
 

@@ -14,6 +14,7 @@ public class StageManager : MonoBehaviour
 
     public bool LoadNextStage()
     {
+        titleStaging.IncrementSpriteCtr();
         currentStageIndex++;
         if (currentStageIndex == stages.Count)
         {

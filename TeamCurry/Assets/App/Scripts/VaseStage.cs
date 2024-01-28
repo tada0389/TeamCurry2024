@@ -5,6 +5,12 @@ public class VaseStage : Stage
 {
     [SerializeField] private Transform thiefTransform;
     [SerializeField] private GameTimer timer;
+
+    private void Awake()
+    {
+        this.gameObject.SetActive(false);
+    }
+
     public override StagePhaseState Setup()
     {
         return StagePhaseState.Done;
@@ -33,6 +39,7 @@ public class VaseStage : Stage
 
     public override StagePhaseState End()
     {
+        this.gameObject.SetActive(false);
         return StagePhaseState.Done;
     }
 
