@@ -55,6 +55,7 @@ namespace Actor.Gimmick
                     if (_state == State.Dropping)
                     {
                         GetComponent<SimpleAnimation>().Play("Dropping");
+                        _vaseStage.StageOutcome = StageOutcome.Lose;
                     }
                     else if (_state == State.Sway)
                     {
@@ -69,9 +70,13 @@ namespace Actor.Gimmick
         State _state = State.Idle;
         [SerializeField]
         TadaLib.HitSystem.OwnerCtrl _owner;
+
+        [SerializeField] private VaseStage _vaseStage;
+
         #endregion
 
         #region privateメソッド
+
         #endregion
     }
 }
