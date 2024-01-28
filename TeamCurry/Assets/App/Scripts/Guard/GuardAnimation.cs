@@ -30,12 +30,14 @@ public class GuardAnimation : MonoBehaviour
     public void PlayerLoses()
     {
         flashlightSpriteRenderer.enabled = true;
+        AnimState = AnimState.Active;
         transform.DOMoveX(player.position.x - 3, winAnimDuration).OnComplete(() => { AnimState = AnimState.Done; });
     }
 
     public void PlayerWins()
     {
         flashlightSpriteRenderer.enabled = true;
+        AnimState = AnimState.Active;
         transform.DOMoveX(end.position.x, winAnimDuration).OnComplete(() => { AnimState = AnimState.Done; });
     }
 }

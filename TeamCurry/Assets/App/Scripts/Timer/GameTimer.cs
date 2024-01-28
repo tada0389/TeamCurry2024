@@ -42,6 +42,7 @@ public class GameTimer : MonoBehaviour
     {
         maxTime = timeLimit;
         time = timeLimit;
+        guard.position = guardStart.position;
     }
 
     public void PauseTimer()

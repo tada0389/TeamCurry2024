@@ -11,10 +11,12 @@ public class StatueStage : Stage
     [SerializeField] private GameTimer gameTimer;
     [SerializeField] private SwitchPoseAnimation switchPoseAnimation;
 
-    private int currentSpriteIndex = 0;
+    private Sprite originalPlayerSprite;
+    private int currentSpriteIndex = -1;
 
     private void Awake()
     {
+        originalPlayerSprite = playerSpriteRenderer.sprite;
         this.gameObject.SetActive(false);
         KanKikuchi.AudioManager.SEManager.Instance.Play(KanKikuchi.AudioManager.SEPath.SYSTEM20);
     }
@@ -23,21 +25,22 @@ public class StatueStage : Stage
     {
         this.gameObject.SetActive(true);
         gameTimer.SetTimer(this.timeLimit);
+        gameTimer.PauseTimer();
         this.StageOutcome = StageOutcome.Undefined;
         guard.Reset();
+        currentSpriteIndex = -1;
+        playerSpriteRenderer.sprite = originalPlayerSprite;
         return StagePhaseState.Done;
     }
 
     public override StagePhaseState StartStage()
     {
-        Debug.Log("START");
         gameTimer.StartTimer();
         return StagePhaseState.Done;
     }
 
     public override StagePhaseState Play()
     {
-        Debug.Log("PLAY");
         if (gameTimer.TimerDone())
         {
             return StagePhaseState.Done;
@@ -97,7 +100,10 @@ public class StatueStage : Stage
 
     public override StagePhaseState Shutdown()
     {
+        guard.Reset();
         this.gameObject.SetActive(false);
+        playerSpriteRenderer.sprite = originalPlayerSprite;
+        gameTimer.PauseTimer();
         return StagePhaseState.Done;
     }
 

@@ -249,6 +249,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6509b30e4d899484ab21675e9a5005ff, type: 3}
+--- !u!212 &137516126 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6760668369525037701, guid: 9bd414159d8a3461e81e9fb364e92a49, type: 3}
+  m_PrefabInstance: {fileID: 1189228036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &363132806 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1508670192343161507, guid: 0f042db8d3533034bb8dd62ab4bf38d4, type: 3}
@@ -597,6 +602,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6760668369525037701, guid: 9bd414159d8a3461e81e9fb364e92a49, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7110450983813411004, guid: 9bd414159d8a3461e81e9fb364e92a49, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.71
@@ -614,9 +623,17 @@ PrefabInstance:
       value: -1.79
       objectReference: {fileID: 0}
     - target: {fileID: 7663418248783381992, guid: 9bd414159d8a3461e81e9fb364e92a49, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 97129443}
+    - target: {fileID: 7663418248783381992, guid: 9bd414159d8a3461e81e9fb364e92a49, type: 3}
       propertyPath: winAnimDuration
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7663418248783381992, guid: 9bd414159d8a3461e81e9fb364e92a49, type: 3}
+      propertyPath: flashlightSpriteRenderer
+      value: 
+      objectReference: {fileID: 137516126}
     - target: {fileID: 8466844606966838869, guid: 9bd414159d8a3461e81e9fb364e92a49, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.31
@@ -675,6 +692,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChandelierStage
       objectReference: {fileID: 0}
+    - target: {fileID: 1487068857535252420, guid: 48b59784022aa422cb504a09bd66bc7e, type: 3}
+      propertyPath: guard
+      value: 
+      objectReference: {fileID: 1008714693}
     - target: {fileID: 1487068857535252420, guid: 48b59784022aa422cb504a09bd66bc7e, type: 3}
       propertyPath: timer
       value: 
