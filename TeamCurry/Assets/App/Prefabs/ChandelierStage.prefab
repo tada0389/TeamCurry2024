@@ -45,9 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34a3b9186ea848df91c270031d63362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stagePhase: 0
-  timeLimit: 0
+  StagePhase: 0
+  StageOutcome: 0
+  timeLimit: 10
+  chandelierOffsetTransform: {fileID: 4091742415586619625}
+  startRotation: {x: 0, y: 0, z: -60}
+  endRotation: {x: 0, y: 0, z: 60}
   timer: {fileID: 0}
+  swingDuration: 2
 --- !u!1 &2344264632987263926
 GameObject:
   m_ObjectHideFlags: 0
