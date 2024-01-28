@@ -46,3 +46,6 @@ TestPlayPackage.asset
 TestPlayPackage.asset.meta
 TeamCurry/UserSettings
 TeamCurry/.vscode
+
+# force fix
+TeamCurry/Assets/App/Graphics/*.meta
