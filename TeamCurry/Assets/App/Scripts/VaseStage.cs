@@ -15,6 +15,7 @@ public class VaseStage : Stage
 
     public override StagePhaseState Setup()
     {
+        thiefTransform.gameObject.SetActive(true);
         gameTimer.SetTimer(this.timeLimit);
         gameTimer.PauseTimer();
         this.StageOutcome = StageOutcome.Undefined;
@@ -37,7 +38,7 @@ public class VaseStage : Stage
         if (gameTimer.TimerDone())
         {
              StageOutcome = StageOutcome.Lose;
-        } else if (thiefTransform.position.x == 21)
+        } else if (thiefTransform.position.x >= 21)
         {
             StageOutcome = StageOutcome.Win;
             return StagePhaseState.Done;
@@ -54,6 +55,7 @@ public class VaseStage : Stage
 
     public override StagePhaseState Shutdown()
     {
+        thiefTransform.gameObject.SetActive(false);
         this.gameObject.SetActive(false);
         playerMoveCtrl.enabled = false;
         guard.Reset();

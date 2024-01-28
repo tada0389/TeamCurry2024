@@ -31,6 +31,7 @@ public class StatueStage : Stage
 
     public override StagePhaseState Setup()
     {
+        player.gameObject.SetActive(true);
         playerAnimator.enabled = false;
         player.position = playerStartPosition.position;
         this.gameObject.SetActive(true);
@@ -57,29 +58,7 @@ public class StatueStage : Stage
         }
         else
         {
-
-            var isLeftDown = false;
-            var isRightDown = false;
-
-            var stickX = InputSystem.JoyconInput.Instance.GetAxis(AxisCode.Horizontal);
-            switch (stickX)
-            {
-                case < 0:
-                    if (stickXPrev >= 0.0f)
-                    {
-                        isLeftDown = true;
-                    }
-                    break;
-                case > 0:
-                    if (stickXPrev >= 0.0f)
-                    {
-                        isRightDown = true;
-                    }
-                    break;
-            }
-
-            stickXPrev = stickX;
-            if (isLeftDown || Input.GetKeyDown(KeyCode.A))
+            if (InputSystem.JoyconInput.Instance.GetButtonDown(ButtonCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
                 currentSpriteIndex++;
                 if (currentSpriteIndex >= sprites.Count)
@@ -89,7 +68,7 @@ public class StatueStage : Stage
 
                 SwitchSprite();
             }
-            else if (isRightDown || Input.GetKeyDown(KeyCode.D))
+            else if (InputSystem.JoyconInput.Instance.GetButtonDown(ButtonCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
                 currentSpriteIndex--;
                 if (currentSpriteIndex < 0)
