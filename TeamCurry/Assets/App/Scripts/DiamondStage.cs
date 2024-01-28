@@ -6,6 +6,7 @@ public class DiamondStage : Stage
 {
     [SerializeField] private Transform thiefTransform;
     [SerializeField] private GameTimer timer;
+    [SerializeField] private Renderer diamondRenderer;
 
     public override StagePhaseState Setup()
     {
@@ -27,6 +28,7 @@ public class DiamondStage : Stage
 
         if (thiefTransform.position.x == 0)
         {
+            diamondRenderer.enabled = false;
             StageOutcome = StageOutcome.Win;
             return StagePhaseState.Done;
         }
