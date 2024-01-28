@@ -161,6 +161,20 @@ namespace InputSystem
             }
         }
 
+        public bool IsLeftJoycon()
+        {
+            if (_gyroJoycon != null)
+            {
+                return _gyroJoycon.isLeft;
+            }
+            else if (_stickJoycon != null)
+            {
+                return _stickJoycon.isLeft;
+            }
+
+            return false;
+        }
+
         public void SetControllerKeyboard()
         {
             GetButtonDown = (code) =>
@@ -233,7 +247,7 @@ namespace InputSystem
                 {
                     case AxisCode.Horizontal:
                         return -GetJoyconStick()[1];
-                        //return Input.GetAxis("Horizontal");
+                    //return Input.GetAxis("Horizontal");
                     case AxisCode.Vertical:
                         return GetJoyconStick()[0];
                         //return Input.GetAxis("Vertical");
@@ -267,7 +281,7 @@ namespace InputSystem
 
             GetJoyconStick = () =>
             {
-                return new float[]{ Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") };
+                return new float[] { Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") };
             };
         }
 
