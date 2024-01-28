@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
     [SerializeField] private List<Stage> stages;
     private int currentStageIndex = -1;
+    [SerializeField] private Title.TitleStaging titleStaging;
 
     public Stage CurrentStage => stages[currentStageIndex];
 
@@ -38,14 +40,18 @@ public class StageManager : MonoBehaviour
                 StagePhaseState setupState = CurrentStage.Setup();
                 if (setupState == StagePhaseState.Done)
                 {
+                    titleStaging.OpenCurtains();
                     CurrentStage.StagePhase = StagePhase.Start;
                 }
                 break;
             case StagePhase.Start:
-                StagePhaseState startState = CurrentStage.StartStage();
-                if (startState == StagePhaseState.Done)
+                if (titleStaging.CurtainState == Title.CurtainState.Open)
                 {
-                    CurrentStage.StagePhase = StagePhase.Playing;
+                    StagePhaseState startState = CurrentStage.StartStage();
+                    if (startState == StagePhaseState.Done)
+                    {
+                        CurrentStage.StagePhase = StagePhase.Playing;
+                    }
                 }
                 break;
             case StagePhase.Playing:
@@ -59,14 +65,18 @@ public class StageManager : MonoBehaviour
                 StagePhaseState endState = CurrentStage.End();
                 if (endState == StagePhaseState.Done)
                 {
+                    titleStaging.CloseCurtains();
                     CurrentStage.StagePhase = StagePhase.Shutdown;
                 }
                 break;
             case StagePhase.Shutdown:
-                StagePhaseState shutdownState = CurrentStage.Shutdown();
-                if (shutdownState == StagePhaseState.Done)
+                if (titleStaging.CurtainState == Title.CurtainState.Closed)
                 {
-                    CurrentStage.StagePhase = StagePhase.Unloaded;
+                    StagePhaseState shutdownState = CurrentStage.Shutdown();
+                    if (shutdownState == StagePhaseState.Done)
+                    {
+                        CurrentStage.StagePhase = StagePhase.Unloaded;
+                    }
                 }
                 break;
             default:

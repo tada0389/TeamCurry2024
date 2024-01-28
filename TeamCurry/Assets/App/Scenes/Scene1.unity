@@ -1101,6 +1101,7 @@ MonoBehaviour:
   stages:
   - {fileID: 1560638058}
   - {fileID: 1791493690}
+  titleStaging: {fileID: 939092582}
 --- !u!4 &793255544
 Transform:
   m_ObjectHideFlags: 0
@@ -1166,6 +1167,9 @@ MonoBehaviour:
   _fadeOutLanguageCanvasDurationSec: 0.5
   _curtainOpenDurationSec: 0.7
   _curtainCloseDurationSec: 0.7
+  _titleMenuCanvasObject: {fileID: 27800406}
+  MenuComplete: 0
+  CurtainState: 1
 --- !u!1 &964781647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1595,7 +1599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTimerPaused: 0
-  maxTime: 30
+  maxTime: 10
   time: 0
 --- !u!4 &1349981341
 Transform:
@@ -1752,6 +1756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageManager: {fileID: 793255543}
   gameState: 0
+  titleStaging: {fileID: 939092582}
 --- !u!1 &1462511058 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1508670191259177234, guid: 0f042db8d3533034bb8dd62ab4bf38d4, type: 3}

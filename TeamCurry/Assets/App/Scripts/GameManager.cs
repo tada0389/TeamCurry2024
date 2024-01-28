@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     {
         if (titleStaging.MenuComplete)
         {
-            titleStaging.gameObject.SetActive(false);
+            titleStaging.HideTitleScreen();
             gameState = GameState.Load;
         }
     }
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
 
     private void UpdateStage()
     {
-        var stagePhaseState = stageManager.UpdateStage();
+        StagePhaseState stagePhaseState = stageManager.UpdateStage();
         if (stagePhaseState == StagePhaseState.Done)
         {
             switch (this.stageManager.CurrentStage.StageOutcome)
