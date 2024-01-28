@@ -6,6 +6,7 @@ using UnityEngine;
 using DG.Tweening;
 using Unity.VisualScripting;
 using System;
+using Ui;
 
 namespace Title
 {
@@ -46,15 +47,26 @@ namespace Title
 
         [SerializeField]
         private float delaySecondsOnOpenClose = 1f;
+
+        [SerializeField]
+        StageBeginUiCtrl _stageBeginUiCtrl;
+        [SerializeField]
+        List<Sprite> _beginSprites;
+        int _curSpriteIdx = 0;
         #endregion
 
         public bool MenuComplete = false;
         public CurtainState CurtainState = CurtainState.Closed;
 
         public void OpenCurtains()
-        {            
-            UniTask.Create(async () => 
+        {
+            UniTask.Create(async () =>
             {
+                await _stageBeginUiCtrl.AppearText(_beginSprites[_curSpriteIdx++]);
+                if (_beginSprites.Count <= _curSpriteIdx)
+                {
+                    _curSpriteIdx = 0;
+                }
                 await Ui.CurtainCtrl.Instance.OpenStaging(_curtainOpenDurationSec);
                 await UniTask.WaitForSeconds(delaySecondsOnOpenClose);
                 this.CurtainState = CurtainState.Open;
@@ -103,7 +115,7 @@ namespace Title
                             _japaneseLanguageImage.rectTransform.DOScale(1.0f, 0.1f);
                             _englishLanguageImage.rectTransform.DOScale(2.0f, 0.1f);
                         }
-                        
+
                         break;
                     case > 0:
                         // _englishLanguageImage.DOKill(true);
@@ -114,13 +126,13 @@ namespace Title
                             _englishLanguageImage.rectTransform.DOScale(1.0f, 0.1f);
                             _japaneseLanguageImage.rectTransform.DOScale(2.0f, 0.1f);
                         }
-                        
+
                         break;
                 }
 
                 await UniTask.Yield();
             }
-            
+
             _languageCanvas.DOFade(0.0f, _fadeOutLanguageCanvasDurationSec);
 
             await UniTask.WaitForSeconds(_fadeOutLanguageCanvasDurationSec);
