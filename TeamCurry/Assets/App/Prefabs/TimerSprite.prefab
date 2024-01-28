@@ -232,6 +232,7 @@ MonoBehaviour:
   isTimerPaused: 0
   maxTime: 10
   time: 0
+  timerDistanceUIVisibility: {fileID: 2603818781080671396}
 --- !u!114 &2603818781080671396
 MonoBehaviour:
   m_ObjectHideFlags: 0

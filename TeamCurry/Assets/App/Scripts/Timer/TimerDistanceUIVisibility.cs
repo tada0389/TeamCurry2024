@@ -20,6 +20,13 @@ public class TimerDistanceUIVisibility : MonoBehaviour
         dist3MRenderer.enabled = false;
     }
 
+    public void Reset()
+    {
+        dist1MRenderer.enabled = false;
+        dist2MRenderer.enabled = false;
+        dist3MRenderer.enabled = false;
+    }
+
     // Update is called once per frame
     void Update()
     {

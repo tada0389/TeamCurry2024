@@ -9,6 +9,7 @@ public class GameTimer : MonoBehaviour
     [SerializeField] private bool isTimerPaused = false;
     [SerializeField] private float maxTime = 30f;
     [SerializeField] private float time;
+    [SerializeField] private TimerDistanceUIVisibility timerDistanceUIVisibility;
     private Vector3 guardPosCreep;
     private float prevTime;
     private float initialTime;
@@ -46,6 +47,7 @@ public class GameTimer : MonoBehaviour
         maxTime = timeLimit;
         time = timeLimit;
         guard.position = guardStart.position;
+        timerDistanceUIVisibility.Reset();
     }
 
     public void PauseTimer()
