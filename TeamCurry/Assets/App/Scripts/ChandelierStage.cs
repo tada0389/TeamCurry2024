@@ -65,7 +65,7 @@ public class ChandelierStage : Stage
     public override StagePhaseState Shutdown()
     {
         guard.Reset();
-        stage.gameObject.SetActive(true);
+        stage.gameObject.SetActive(false);
         gameTimer.PauseTimer();
 
         return StagePhaseState.Done;

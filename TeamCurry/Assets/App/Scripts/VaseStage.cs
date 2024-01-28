@@ -38,7 +38,7 @@ public class VaseStage : Stage
         if (gameTimer.TimerDone())
         {
              StageOutcome = StageOutcome.Lose;
-        } else if (thiefTransform.position.x >= 21)
+        } else if (thiefTransform.position.x >= 9)
         {
             StageOutcome = StageOutcome.Win;
             return StagePhaseState.Done;
