@@ -18,6 +18,7 @@ namespace Actor.Gimmick
         , IProcMove
     {
         #region プロパティ
+        public float AngularVelocity => _angularVelocity;
         #endregion
 
         #region メソッド
@@ -39,7 +40,13 @@ namespace Actor.Gimmick
             var acceleration = -gravity / _length * (float)Mathf.Sin(_angle);
 
             var joyconOrientation = InputSystem.JoyconInput.Instance.GetJoyconVector();
-            var addVel = Mathf.Clamp(-(joyconOrientation.y - 90.0f) / 45.0f, -1.0f, 1.0f) * _joyconPower;
+            var effect = InputSystem.JoyconInput.Instance.IsLeftJoycon() ? -180.0f : 0.0f;
+            var addVel = Mathf.Clamp(-(joyconOrientation.y - 90.0f + effect) / 45.0f, -1.0f, 1.0f) * _joyconPower;
+            // 力を打ち消す方向なら特別に強くする
+            if (Mathf.Sign(addVel) != Mathf.Sign(_angularVelocity)) {
+                addVel *= 1.5f * Mathf.Min(1.0f, Mathf.Abs(_angularVelocity / 0.5f));
+            }
+
             acceleration += addVel * Time.deltaTime;
 
             _angularVelocity += acceleration * Time.deltaTime;
