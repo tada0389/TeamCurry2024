@@ -19,18 +19,19 @@ public class DiamondStage : Stage
 
     public override StagePhaseState Play()
     {
+        if (timer.TimerDone())
+        {
+             StageOutcome = StageOutcome.Lose;           
+             return StagePhaseState.Done;
+        }
+
         if (thiefTransform.position.x == 0)
         {
             StageOutcome = StageOutcome.Win;
             return StagePhaseState.Done;
         }
-
-        if (timer.TimerDone())
-        {
-            StageOutcome = StageOutcome.Lose;
-        }
         
-        return timer.TimerDone() ? StagePhaseState.Done : StagePhaseState.Active;
+        return StagePhaseState.Active;
     }
 
     public override StagePhaseState End()
