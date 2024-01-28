@@ -72,7 +72,10 @@ namespace Title
         {
             UniTask.Create(async () =>
             {
-                await _stageBeginUiCtrl.AppearText(_beginSprites[_curSpriteIdx]);
+                if (_curSpriteIdx < _beginSprites.Count)
+                {
+                    await _stageBeginUiCtrl.AppearText(_beginSprites[_curSpriteIdx]);
+                }
                 await Ui.CurtainCtrl.Instance.OpenStaging(_curtainOpenDurationSec);
                 // await UniTask.WaitForSeconds(delaySecondsOnOpenClose);
                 this.CurtainState = CurtainState.Open;
@@ -173,7 +176,7 @@ namespace Title
             CurtainState = CurtainState.Closed;
             MenuComplete = true;
 
-            BGMManager.Instance.Play(BGMPath.WAYIN_MUSIC, delay: 3.0f);
+            BGMManager.Instance.Play(BGMPath.WAYIN_MUSIC);
         }
         #endregion
     }

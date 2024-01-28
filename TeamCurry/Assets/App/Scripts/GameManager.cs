@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using KanKikuchi.AudioManager;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour

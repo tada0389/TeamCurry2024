@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using KanKikuchi.AudioManager;
 using UnityEngine;
 
 public class StageManager : MonoBehaviour
@@ -68,6 +69,16 @@ public class StageManager : MonoBehaviour
                 {
                     titleStaging.CloseCurtains();
                     CurrentStage.StagePhase = StagePhase.Shutdown;
+
+                    switch (this.CurrentStage.StageOutcome)
+                    {
+                        case StageOutcome.Win:
+                            SEManager.Instance.Play(SEPath.GAME_CLEAR_CHEER);
+                            break;
+                        case StageOutcome.Lose:
+                            SEManager.Instance.Play(SEPath.GAME_OVERSCREEN_SFX);
+                            break;
+                    }
                 }
                 break;
             case StagePhase.Shutdown:

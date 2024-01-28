@@ -8,6 +8,7 @@ using TadaLib.ActionStd;
 using UniRx;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using KanKikuchi.AudioManager;
 
 namespace Ui
 {
@@ -23,7 +24,8 @@ namespace Ui
         #region メソッド
         public async UniTask AppearText(Sprite sprite)
         {
-            Debug.Log("called");
+            SEManager.Instance.Play(SEPath.MENU_SELECTION);
+
             // initialize
             _appearImage.rectTransform.localScale = Vector3.zero;
             var color = _appearImage.color;
