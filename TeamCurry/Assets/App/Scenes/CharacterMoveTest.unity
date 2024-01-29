@@ -207,6 +207,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!212 &146447339 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 182636635372774873, guid: 7239150eabc1554449647a7e107f8df0, type: 3}
+  m_PrefabInstance: {fileID: 420291748}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &158797221
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +648,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: VaseStatue (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5046955641165581617, guid: 7239150eabc1554449647a7e107f8df0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -673,6 +679,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d6869d6dbe6d84cb7c67ce749c9afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &729733620 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 182636635372774873, guid: 7239150eabc1554449647a7e107f8df0, type: 3}
+  m_PrefabInstance: {fileID: 5594921275559280061}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &866944064 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1433247092924663091, guid: 7239150eabc1554449647a7e107f8df0, type: 3}
@@ -691,6 +702,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _owner: {fileID: 496972656}
+  _vaseStage: {fileID: 0}
+  _playerTransform: {fileID: 300118336}
+  _vaseRenderer: {fileID: 146447339}
+  _vaseBaseRenderer: {fileID: 1613234818}
+--- !u!212 &990769614 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5416416693620126549, guid: 7239150eabc1554449647a7e107f8df0, type: 3}
+  m_PrefabInstance: {fileID: 5594921275559280061}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1329135036
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,7 +875,8 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 1004971679
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5046955641165581617, guid: 7239150eabc1554449647a7e107f8df0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -863,6 +884,16 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2013676004}
   m_SourcePrefab: {fileID: 100100000, guid: 7239150eabc1554449647a7e107f8df0, type: 3}
+--- !u!212 &1546207809 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5416416693620126549, guid: 7239150eabc1554449647a7e107f8df0, type: 3}
+  m_PrefabInstance: {fileID: 1475276426}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1613234818 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5416416693620126549, guid: 7239150eabc1554449647a7e107f8df0, type: 3}
+  m_PrefabInstance: {fileID: 420291748}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2013676002 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1433247092924663091, guid: 7239150eabc1554449647a7e107f8df0, type: 3}
@@ -881,6 +912,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _owner: {fileID: 642551410}
+  _vaseStage: {fileID: 0}
+  _playerTransform: {fileID: 300118336}
+  _vaseRenderer: {fileID: 2083879759}
+  _vaseBaseRenderer: {fileID: 1546207809}
+--- !u!212 &2083879759 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 182636635372774873, guid: 7239150eabc1554449647a7e107f8df0, type: 3}
+  m_PrefabInstance: {fileID: 1475276426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5594921275559280061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -933,6 +973,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: VaseStatue
       objectReference: {fileID: 0}
+    - target: {fileID: 5046955641165581617, guid: 7239150eabc1554449647a7e107f8df0, type: 3}
+      propertyPath: _vaseRenderer
+      value: 
+      objectReference: {fileID: 729733620}
+    - target: {fileID: 5046955641165581617, guid: 7239150eabc1554449647a7e107f8df0, type: 3}
+      propertyPath: _playerTransform
+      value: 
+      objectReference: {fileID: 300118336}
+    - target: {fileID: 5046955641165581617, guid: 7239150eabc1554449647a7e107f8df0, type: 3}
+      propertyPath: _vaseBaseRenderer
+      value: 
+      objectReference: {fileID: 990769614}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

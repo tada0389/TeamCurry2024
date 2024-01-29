@@ -33,11 +33,6 @@ namespace Actor.Gimmick
         #region メソッド
         public void Drop()
         {
-            if (_vaseStage != null)
-            {
-                _vaseStage.StageOutcome = StageOutcome.Lose;
-            }
-
             if (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f)
             {
                 SEManager.Instance.Play(SEPath.VASE_BREAK_1);
@@ -80,12 +75,30 @@ namespace Actor.Gimmick
                         {
                             SEManager.Instance.Play(SEPath.VASE_HIT_HEAVY_2);
                         }
+
+                        if (_vaseStage != null)
+                        {
+                            _vaseStage.StageOutcome = StageOutcome.Lose;
+                        }
+
                     }
                     else if (_state == State.Sway)
                     {
 
                     }
                 }
+            }
+
+            // sorting layer 変更
+            if (_playerTransform.position.y < _vaseBaseRenderer.transform.position.y - 1.5f)
+            {
+                _vaseBaseRenderer.sortingLayerName = "GimmickBack";
+                _vaseRenderer.sortingLayerName = "GimmickBack";
+            }
+            else
+            {
+                _vaseBaseRenderer.sortingLayerName = "GimmickFront";
+                _vaseRenderer.sortingLayerName = "GimmickFront";
             }
         }
         #endregion
@@ -96,6 +109,10 @@ namespace Actor.Gimmick
         TadaLib.HitSystem.OwnerCtrl _owner;
 
         [SerializeField] private VaseStage _vaseStage;
+        [SerializeField] private Transform _playerTransform;
+
+        [SerializeField] private SpriteRenderer _vaseRenderer;
+        [SerializeField] private SpriteRenderer _vaseBaseRenderer;
 
         #endregion
 
