@@ -7,9 +7,12 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
+    public static bool IsEnglish = true;
+
     [SerializeField] private List<Stage> stages;
     private int currentStageIndex = -1;
     [SerializeField] private Title.TitleStaging titleStaging;
+    [SerializeField] private TimerDistanceUIVisibility timerDistanceUi;
 
     public Stage CurrentStage => stages[currentStageIndex];
 
@@ -49,6 +52,12 @@ public class StageManager : MonoBehaviour
             case StagePhase.Start:
                 if (titleStaging.CurtainState == Title.CurtainState.Open)
                 {
+                    // Šy‚ð‚·‚é‚½‚ß‚É‹­ˆø‚É‚â‚é
+                    if (CurrentStage.name != "DiamondStage")
+                    {
+                        timerDistanceUi.FadeUi(1.0f, 0.3f);
+                    }
+
                     StagePhaseState startState = CurrentStage.StartStage();
                     if (startState == StagePhaseState.Done)
                     {
@@ -60,6 +69,7 @@ public class StageManager : MonoBehaviour
                 StagePhaseState playState = CurrentStage.Play();
                 if (playState == StagePhaseState.Done)
                 {
+                    timerDistanceUi.FadeUi(0.0f, 0.3f);
                     CurrentStage.StagePhase = StagePhase.End;
                 }
                 break;

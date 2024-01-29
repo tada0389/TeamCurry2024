@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,15 @@ public class TimerDistanceUIVisibility : MonoBehaviour
     [SerializeField] private Renderer dist1MRenderer;
     [SerializeField] private Renderer dist2MRenderer;
     [SerializeField] private Renderer dist3MRenderer;
+    [SerializeField] private List<SpriteRenderer> renderers;
+
+    public void FadeUi(float alpha, float durationSec)
+    {
+        foreach(var renderer in renderers)
+        {
+            renderer.DOFade(alpha, durationSec);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

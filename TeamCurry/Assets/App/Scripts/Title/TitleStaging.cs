@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 using System;
 using Ui;
 using KanKikuchi.AudioManager;
+using static UnityEngine.ParticleSystem;
 
 namespace Title
 {
@@ -53,6 +54,8 @@ namespace Title
         StageBeginUiCtrl _stageBeginUiCtrl;
         [SerializeField]
         List<Sprite> _beginSprites;
+        [SerializeField]
+        List<Sprite> _beginSpritesJp;
         int _curSpriteIdx = -1;
         #endregion
 
@@ -74,7 +77,8 @@ namespace Title
             {
                 if (_curSpriteIdx < _beginSprites.Count)
                 {
-                    await _stageBeginUiCtrl.AppearText(_beginSprites[_curSpriteIdx]);
+                    var sprite = StageManager.IsEnglish ? _beginSprites[_curSpriteIdx] : _beginSpritesJp[_curSpriteIdx];
+                    await _stageBeginUiCtrl.AppearText(sprite);
                 }
                 await Ui.CurtainCtrl.Instance.OpenStaging(_curtainOpenDurationSec);
                 // await UniTask.WaitForSeconds(delaySecondsOnOpenClose);
@@ -102,17 +106,21 @@ namespace Title
         {
             Ui.CurtainCtrl.Instance.SetCloseForce();
 
+            {
+                _japaneseLanguageImage.rectTransform.DOScale(1.0f, 0.1f);
+                _englishLanguageImage.rectTransform.DOScale(2.0f, 0.1f);
+            }
+
             await UniTask.Yield();
 
             // wait for language choose input
             //await UniTask.WaitUntil(() => JoyconInput.Instance.GetButtonDown(ButtonCode.Jump));
             // await UniTask.WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-            Debug.Log(InputSystem.JoyconInput.Instance.IsAnyButtonDown);
+            var isLeftPrev = true;
             while (!InputSystem.JoyconInput.Instance.IsAnyButtonDown && !Input.GetKeyDown(KeyCode.Space))
             {
                 // update
                 var first = true;
-                var isLeftPrev = true;
                 var stickX = InputSystem.JoyconInput.Instance.GetAxis(AxisCode.Horizontal);
                 switch (stickX)
                 {
@@ -142,6 +150,7 @@ namespace Title
 
                 await UniTask.Yield();
             }
+            StageManager.IsEnglish = isLeftPrev;
 
             SEManager.Instance.Play(SEPath.MENU_VALIDATION);
 
