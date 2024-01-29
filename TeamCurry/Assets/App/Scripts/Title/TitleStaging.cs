@@ -56,6 +56,10 @@ namespace Title
         List<Sprite> _beginSprites;
         [SerializeField]
         List<Sprite> _beginSpritesJp;
+        [SerializeField]
+        List<Sprite> _controlSprites;
+        [SerializeField]
+        List<Sprite> _controlSpritesKeyboard;
         int _curSpriteIdx = -1;
         #endregion
 
@@ -78,7 +82,8 @@ namespace Title
                 if (_curSpriteIdx < _beginSprites.Count)
                 {
                     var sprite = StageManager.IsEnglish ? _beginSprites[_curSpriteIdx] : _beginSpritesJp[_curSpriteIdx];
-                    await _stageBeginUiCtrl.AppearText(sprite);
+                    var spriteControl = InputSystem.JoyconInput.Instance.IsKeybord ? _controlSpritesKeyboard[_curSpriteIdx] : _controlSprites[_curSpriteIdx];
+                    await _stageBeginUiCtrl.AppearText(sprite, spriteControl);
                 }
                 await Ui.CurtainCtrl.Instance.OpenStaging(_curtainOpenDurationSec);
                 // await UniTask.WaitForSeconds(delaySecondsOnOpenClose);
