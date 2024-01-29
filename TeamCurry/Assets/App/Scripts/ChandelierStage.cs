@@ -45,12 +45,12 @@ public class ChandelierStage : Stage
         {
             if (gameTimer.RateTime01 > 0.90f)
             {
-                if (Mathf.Abs(chandelier.AngleDeg) > 50.0f)
+                if (Mathf.Abs(chandelier.AngleDeg) > 40.0f || Mathf.Abs(chandelier.AngularVelocity) > 0.9f)
                 {
                     StageOutcome = StageOutcome.Lose;
                     return StagePhaseState.Done;
                 }
-            }
+            } 
 
             return StagePhaseState.Active;
         }

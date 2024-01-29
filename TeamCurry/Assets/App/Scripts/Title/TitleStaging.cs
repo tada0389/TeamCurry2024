@@ -186,7 +186,7 @@ namespace Title
             CurtainState = CurtainState.Closed;
             MenuComplete = true;
 
-            BGMManager.Instance.Play(BGMPath.WAYIN_MUSIC_2, volumeRate: 20.0f, delay: 1.0f);
+            BGMManager.Instance.Play(BGMPath.WAYIN_MUSIC_2, volumeRate: 40.0f, delay: 1.0f);
         }
         #endregion
     }

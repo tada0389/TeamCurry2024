@@ -50,7 +50,9 @@ namespace InputSystem
             {
                 return GetButtonDown(ButtonCode.Jump) || GetButton(ButtonCode.Cancel) || GetButtonDown(ButtonCode.DownArrow) || GetButtonDown(ButtonCode.LeftArrow) || GetButtonDown(ButtonCode.RightArrow) || GetButtonDown(ButtonCode.UpArrow);
             }
-        }            
+        }
+
+        public bool IsKeybord { get; private set; } = false;
 
         static float joyconAngle = 180;
 
@@ -125,13 +127,9 @@ namespace InputSystem
                 }
             }
 
-            if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
             {
                 SetControllerKeyboard();
-            }
-
-            if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
-            {
                 SetSensorKeyboard();
             }
 
@@ -268,6 +266,8 @@ namespace InputSystem
 
         public void SetSensorKeyboard()
         {
+            IsKeybord = true;
+
             if (GetJoyconVector != null)
             {
                 joyconAngle = GetJoyconVector().y;
@@ -297,6 +297,7 @@ namespace InputSystem
 
         public void SetControllerJoycon(Joycon joycon)
         {
+            IsKeybord = false;
             if (joycon.isLeft)
             {
                 GetButtonDown = (code) =>

@@ -49,6 +49,13 @@ namespace Actor.Gimmick
             var joyconOrientation = InputSystem.JoyconInput.Instance.GetJoyconVector();
             var effect = InputSystem.JoyconInput.Instance.IsLeftJoycon() ? -180.0f : 0.0f;
             var addVel = Mathf.Clamp(-(joyconOrientation.y - 90.0f + effect) / 45.0f, -1.0f, 1.0f) * _joyconPower;
+
+            if (JoyconInput.Instance.IsKeybord)
+            {
+                var axisX = JoyconInput.Instance.GetAxis(AxisCode.Horizontal);
+                addVel = axisX * _joyconPower;
+            }
+
             //// 力を打ち消す方向なら特別に強くする
             //if (Mathf.Sign(addVel) != Mathf.Sign(_angularVelocity))
             //{

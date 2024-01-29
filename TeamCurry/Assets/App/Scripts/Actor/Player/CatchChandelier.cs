@@ -6,6 +6,7 @@ using TadaLib.ProcSystem;
 using TadaLib.Extension;
 using TadaLib.ActionStd;
 using UniRx;
+using InputSystem;
 
 namespace Actor.Player
 {
@@ -29,8 +30,16 @@ namespace Actor.Player
             var effect = InputSystem.JoyconInput.Instance.IsLeftJoycon() ? -180.0f : 0.0f;
             var vel = Mathf.Clamp(-(joyconOrientation.y - 90.0f + effect) / 180.0f, -1.0f, 1.0f);
 
-            _angle = TadaLib.Util.InterpUtil.Linier(_angle, vel * _swingPower, 1.0f, Time.deltaTime);
-            _moveX = TadaLib.Util.InterpUtil.Linier(_moveX, vel * _movePower, 1.0f, Time.deltaTime);
+            var erp = 0.5f;
+            if (JoyconInput.Instance.IsKeybord)
+            {
+                var axisX = JoyconInput.Instance.GetAxis(AxisCode.Horizontal);
+                vel = axisX * 0.5f;
+                erp = 0.2f;
+            }
+
+            _angle = TadaLib.Util.InterpUtil.Linier(_angle, vel * _swingPower, erp, Time.deltaTime);
+            _moveX = TadaLib.Util.InterpUtil.Linier(_moveX, vel * _movePower, erp, Time.deltaTime);
             transform.localPosition = new Vector3(vel, transform.localPosition.y, transform.localPosition.z);
             transform.localEulerAngles = new Vector3(_movePower, 0.0f, _angle);
         }
