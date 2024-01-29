@@ -1,3 +1,4 @@
+using KanKikuchi.AudioManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class GameClear : Stage
 
     public override StagePhaseState StartStage()
     {
+        SEManager.Instance.Play(SEPath.GAME_CLEAR_CHEER);
         return StagePhaseState.Done;
     }
 

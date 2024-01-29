@@ -69,6 +69,12 @@ public class StageManager : MonoBehaviour
                 StagePhaseState playState = CurrentStage.Play();
                 if (playState == StagePhaseState.Done)
                 {
+                    switch (this.CurrentStage.StageOutcome)
+                    {
+                        case StageOutcome.Lose:
+                            SEManager.Instance.Play(SEPath.SPOTTED_SFX);
+                            break;
+                    }
                     timerDistanceUi.FadeUi(0.0f, 0.3f);
                     CurrentStage.StagePhase = StagePhase.End;
                 }

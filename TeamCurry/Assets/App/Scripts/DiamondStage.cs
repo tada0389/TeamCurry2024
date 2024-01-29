@@ -1,3 +1,4 @@
+using KanKikuchi.AudioManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,14 +36,16 @@ public class DiamondStage : Stage
     {
         if (timer.TimerDone())
         {
-             StageOutcome = StageOutcome.Win;           
-             return StagePhaseState.Done;
+            SEManager.Instance.Play(SEPath.GAME_CLEAR_DIAMONDAPPEARS);
+             StageOutcome = StageOutcome.Win;
+            return StagePhaseState.Done;
         }
 
         if (thiefTransform.position.x >= -.5)
         {
             diamondRenderer.enabled = false;
             StageOutcome = StageOutcome.Win;
+            SEManager.Instance.Play(SEPath.GAME_CLEAR_DIAMONDAPPEARS);
             return StagePhaseState.Done;
         }
         
