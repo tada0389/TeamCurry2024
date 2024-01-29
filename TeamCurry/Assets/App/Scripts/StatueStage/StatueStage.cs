@@ -57,7 +57,8 @@ public class StatueStage : Stage
         }
         else
         {
-            if (InputSystem.JoyconInput.Instance.GetButtonDown(ButtonCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            var stickX = JoyconInput.Instance.GetAxis(AxisCode.Horizontal);
+            if ((stickX > 0.0f && stickXPrev <= 0.0f) || Input.GetKeyDown(KeyCode.A))
             {
                 currentSpriteIndex++;
                 if (currentSpriteIndex >= sprites.Count)
@@ -67,7 +68,7 @@ public class StatueStage : Stage
 
                 SwitchSprite();
             }
-            else if (InputSystem.JoyconInput.Instance.GetButtonDown(ButtonCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            else if ((stickX < 0.0f && stickXPrev >= 0.0f) || Input.GetKeyDown(KeyCode.D))
             {
                 currentSpriteIndex--;
                 if (currentSpriteIndex < 0)
@@ -77,6 +78,7 @@ public class StatueStage : Stage
 
                 SwitchSprite();
             }
+            stickXPrev = stickX;
 
             return StagePhaseState.Active;
         }

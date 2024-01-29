@@ -28,7 +28,7 @@ namespace Actor.Player
         {
             var joyconOrientation = InputSystem.JoyconInput.Instance.GetJoyconVector();
             var effect = InputSystem.JoyconInput.Instance.IsLeftJoycon() ? -180.0f : 0.0f;
-            var vel = Mathf.Clamp(-(joyconOrientation.y - 90.0f + effect) / 180.0f, -1.0f, 1.0f);
+            var vel = Mathf.Clamp(-(joyconOrientation.y - 90.0f + effect) / 45.0f, -1.0f, 1.0f);
 
             var erp = 0.5f;
             if (JoyconInput.Instance.IsKeybord)
