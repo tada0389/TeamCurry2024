@@ -8,6 +8,7 @@ using TadaLib.ActionStd;
 using UniRx;
 using UnityEngine.UIElements;
 using KanKikuchi.AudioManager;
+using InputSystem;
 
 namespace Actor.Gimmick
 {
@@ -31,6 +32,7 @@ namespace Actor.Gimmick
         {
             _angle = _initialSwingDeg * Mathf.Deg2Rad;
             _angularVelocity = _initialAngularVelocity;
+            JoyconInput.Instance.ResetJoyconAngle();
         }
         #endregion
 
@@ -47,11 +49,12 @@ namespace Actor.Gimmick
             var joyconOrientation = InputSystem.JoyconInput.Instance.GetJoyconVector();
             var effect = InputSystem.JoyconInput.Instance.IsLeftJoycon() ? -180.0f : 0.0f;
             var addVel = Mathf.Clamp(-(joyconOrientation.y - 90.0f + effect) / 45.0f, -1.0f, 1.0f) * _joyconPower;
-            // 力を打ち消す方向なら特別に強くする
-            if (Mathf.Sign(addVel) != Mathf.Sign(_angularVelocity))
-            {
-                addVel *= 1.5f * Mathf.Min(1.0f, Mathf.Abs(_angularVelocity / 0.5f));
-            }
+            //// 力を打ち消す方向なら特別に強くする
+            //if (Mathf.Sign(addVel) != Mathf.Sign(_angularVelocity))
+            //{
+            //    var powerRate = TadaLib.Util.InterpUtil.Remap(Mathf.Clamp(Mathf.Abs(AngleDeg) / 45.0f, 0.0f, 1.0f), 0.0f, 1.0f, 0.3f, 1.2f);
+            //    addVel *= 1.5f * powerRate;
+            //}
 
             acceleration += addVel * Time.deltaTime;
 
@@ -65,9 +68,9 @@ namespace Actor.Gimmick
             }
             if (Mathf.Sign(_angularVelocity) != Mathf.Sign(angularVelocityPrev))
             {
-                var volume = Mathf.Clamp(Mathf.Abs(_angle) / 30.0f, 0.05f, 1.5f);
+                var volume = Mathf.Clamp(Mathf.Abs(AngleDeg) / 30.0f, 0.05f, 2.0f) * 1.2f;
                 SEManager.Instance.Play(SEPath.CHANDELIER_TINGLE_1, volume);
-                }
+            }
 
             transform.localEulerAngles = new Vector3(0.0f, 0.0f, _angle * Mathf.Rad2Deg);
         }

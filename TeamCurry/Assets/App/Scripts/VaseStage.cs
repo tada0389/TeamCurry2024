@@ -23,6 +23,7 @@ public class VaseStage : Stage
         thiefTransform.position = playerStartPos.position;
 
         playerMoveCtrl.enabled = true;
+        playerMoveCtrl.GetComponent<SimpleAnimation>().enabled = true;
         this.gameObject.SetActive(true);
         return StagePhaseState.Done;
     }

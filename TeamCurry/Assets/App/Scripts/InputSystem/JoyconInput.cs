@@ -54,6 +54,11 @@ namespace InputSystem
 
         static float joyconAngle = 180;
 
+        public void ResetJoyconAngle()
+        {
+            joyconAngle = 90.0f;
+        }
+
         /// <summary>
         /// InputDeadzone
         /// </summary>

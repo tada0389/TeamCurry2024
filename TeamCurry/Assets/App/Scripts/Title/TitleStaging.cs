@@ -107,6 +107,7 @@ namespace Title
             // wait for language choose input
             //await UniTask.WaitUntil(() => JoyconInput.Instance.GetButtonDown(ButtonCode.Jump));
             // await UniTask.WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+            Debug.Log(InputSystem.JoyconInput.Instance.IsAnyButtonDown);
             while (!InputSystem.JoyconInput.Instance.IsAnyButtonDown && !Input.GetKeyDown(KeyCode.Space))
             {
                 // update
